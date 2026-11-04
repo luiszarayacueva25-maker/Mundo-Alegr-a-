@@ -37,7 +37,7 @@
             --capa-oscura: rgba(0, 0, 0, 0.45);
         }
 
-        /* 🎨 TEMAS DE COLOR */
+        /* TEMAS DE COLOR */
         body.tema-azul {
             --color-boton: linear-gradient(135deg, rgba(10, 37, 64, 0.85), rgba(0, 113, 227, 0.85));
             --color-acento: #0a2540;
@@ -193,7 +193,6 @@
         .control-group label { font-size: 0.9rem; font-weight: 600; display: flex; justify-content: space-between; }
         .slider-transparencia { width: 100%; accent-color: var(--color-acento); cursor: pointer; }
 
-        /* SELECTOR DE PACK DE FONDOS (CORREGIDO BUG DE TEXTO EN MODO OSCURO) */
         .select-pack-fondos {
             width: 100%; padding: 9px 12px; border-radius: 14px;
             border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
@@ -263,22 +262,22 @@
             transform: translateY(-2px); opacity: 0.9;
         }
 
-        /* Barra Superior (ahora conectada a la variable de transparencia) */
+        /* BARRA SUPERIOR ADAPTABLE */
         header { 
-            margin: 25px 5% 0; background-color: var(--header-bg); 
+            margin: 20px 4% 0; background-color: var(--header-bg); 
             backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
             border: 1px solid var(--tarjeta-borde); border-radius: 20px;
-            box-shadow: var(--sombra-flotante); position: sticky; top: 25px; z-index: 100;
+            box-shadow: var(--sombra-flotante); position: sticky; top: 15px; z-index: 100;
             transition: all 0.4s ease;
         }
 
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 4%; }
         
         .logo { 
-            font-size: 1.5rem; font-weight: 800; cursor: pointer; 
+            font-size: 1.4rem; font-weight: 800; cursor: pointer; 
             letter-spacing: -0.5px; color: var(--color-texto);
             transition: transform 0.25s ease; user-select: none;
-            display: flex; align-items: center; gap: 6px;
+            display: flex; align-items: center; gap: 6px; white-space: nowrap;
         }
         .logo:hover { transform: scale(1.04); }
         .logo span { opacity: 0.5; }
@@ -291,12 +290,12 @@
             transform: rotate(180deg);
         }
 
-        .nav-links { display: flex; list-style: none; gap: 15px; align-items: center; }
+        .nav-links { display: flex; list-style: none; gap: 10px; align-items: center; }
 
         .btn-nav-inicio, .btn-nav-registro, .btn-nav-novedades {
-            text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            padding: 9px 18px; border-radius: 16px; cursor: pointer; display: inline-flex;
-            align-items: center; gap: 6px;
+            text-decoration: none; font-weight: 600; font-size: 0.88rem;
+            padding: 8px 14px; border-radius: 14px; cursor: pointer; display: inline-flex;
+            align-items: center; gap: 6px; white-space: nowrap;
             transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
@@ -311,140 +310,149 @@
         }
 
         .btn-nav-inicio:hover, .btn-nav-registro:hover, .btn-nav-novedades:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 22px var(--acento-glow) !important;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 20px var(--acento-glow) !important;
         }
-
-        .btn-nav-inicio:active, .btn-nav-registro:active, .btn-nav-novedades:active { transform: translateY(-1px) scale(0.96); }
 
         main {
             position: relative; z-index: 1; flex: 1; display: flex;
-            flex-direction: column; justify-content: center; padding: 30px 20px;
+            flex-direction: column; justify-content: center; padding: 25px 15px;
         }
 
         .hero { 
-            margin: 0 auto 25px; padding: 35px 40px; text-align: center; 
+            margin: 0 auto 20px; padding: 30px 25px; text-align: center; 
             background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px); border: 1px solid var(--tarjeta-borde);
-            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 650px; width: 90%;
+            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 650px; width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
         }
-        .hero:hover { transform: translateY(-4px); box-shadow: 0 25px 45px var(--acento-glow); }
-        .hero h1 { font-size: 2.6rem; color: var(--color-texto); margin-bottom: 8px; font-weight: 800; letter-spacing: -1px; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; font-weight: 500; }
+        .hero h1 { font-size: 2.2rem; color: var(--color-texto); margin-bottom: 8px; font-weight: 800; letter-spacing: -1px; }
+        .hero p { font-size: 1rem; opacity: 0.9; font-weight: 500; }
 
-        .interactive-section { padding: 0 5% 20px; text-align: center; }
+        .interactive-section { padding: 0 2% 20px; text-align: center; }
 
         .card-container { 
             background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px); max-width: 480px; margin: 0 auto; 
-            padding: 35px 30px; border-radius: 24px; box-shadow: var(--sombra-flotante);
-            border: 1px solid var(--tarjeta-borde); 
+            padding: 30px 22px; border-radius: 24px; box-shadow: var(--sombra-flotante);
+            border: 1px solid var(--tarjeta-borde); width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease, -webkit-mask-image 0.7s cubic-bezier(0.4, 0, 0.2, 1), mask-image 0.7s cubic-bezier(0.4, 0, 0.2, 1);
             
             -webkit-mask-image: var(--tarjeta-mask);
             mask-image: var(--tarjeta-mask);
         }
-        .card-container:hover { transform: translateY(-6px); box-shadow: 0 25px 50px var(--acento-glow); }
-        .card-container h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .card-container h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
 
         .quote-box {
-            font-size: 1.15rem; font-weight: 600; min-height: 70px;
+            font-size: 1.05rem; font-weight: 600; min-height: 65px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px; line-height: 1.5; transition: opacity 0.25s ease;
+            margin-bottom: 18px; line-height: 1.4; transition: opacity 0.25s ease;
         }
 
         .btn-action { 
-            padding: 11px 22px; font-size: 0.95rem; font-weight: 600; 
+            padding: 11px 22px; font-size: 0.92rem; font-weight: 600; 
             background: var(--color-boton); color: var(--color-boton-texto); 
             border: none; border-radius: 20px; cursor: pointer; 
             box-shadow: 0 4px 12px var(--acento-glow);
             transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease;
         }
-        .btn-action:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 22px var(--acento-glow); opacity: 0.95; }
-        .btn-action:active { transform: scale(0.96); }
 
         footer { 
-            position: relative; z-index: 1; margin: 20px 5%; text-align: center; 
-            padding: 15px; font-size: 0.85rem; background-color: var(--header-bg); 
+            position: relative; z-index: 1; margin: 15px 4%; text-align: center; 
+            padding: 12px; font-size: 0.8rem; background-color: var(--header-bg); 
             backdrop-filter: blur(10px); border: 1px solid var(--tarjeta-borde);
             border-radius: 18px; box-shadow: var(--sombra-flotante); transition: all 0.4s ease;
         }
 
-        /* MODALES FLOTANTES */
+        /* MODALES FLOTANTES ADAPTABLES */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             z-index: 300; display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 15px;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
 
         .modal-content {
             background-color: var(--tarjeta-bg); border: 1px solid var(--tarjeta-borde);
-            box-shadow: var(--sombra-flotante); border-radius: 28px; width: 90%; max-width: 500px;
-            padding: 35px 30px; transform: scale(0.85) translateY(20px); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: var(--sombra-flotante); border-radius: 24px; width: 100%; max-width: 500px;
+            padding: 25px 20px; transform: scale(0.85) translateY(20px); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative; text-align: left; max-height: 85vh; overflow-y: auto;
         }
         .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
 
         .modal-header {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px; border-bottom: 1px solid var(--tarjeta-borde); padding-bottom: 12px;
+            margin-bottom: 15px; border-bottom: 1px solid var(--tarjeta-borde); padding-bottom: 10px;
         }
-        .modal-header h2 { font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .modal-header h2 { font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
 
         .btn-cerrar-modal {
             background: none; border: none; font-size: 1.4rem; color: var(--color-texto);
-            cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
+            cursor: pointer; opacity: 0.7; transition: opacity 0.2s; padding: 5px;
         }
-        .btn-cerrar-modal:hover { opacity: 1; }
 
-        .modal-body { font-size: 0.98rem; line-height: 1.6; display: flex; flex-direction: column; gap: 16px; }
+        .modal-body { font-size: 0.92rem; line-height: 1.5; display: flex; flex-direction: column; gap: 14px; }
         
         .version-badge {
             display: inline-block; background-color: var(--btn-inicio-bg); border: 1px solid var(--tarjeta-borde);
-            padding: 4px 12px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; width: fit-content;
+            padding: 4px 10px; border-radius: 10px; font-weight: 700; font-size: 0.8rem; width: fit-content;
         }
 
         .integrantes-list {
-            list-style: none; padding-left: 0; margin-top: 6px; display: flex; flex-direction: column; gap: 8px;
+            list-style: none; padding-left: 0; margin-top: 4px; display: flex; flex-direction: column; gap: 6px;
         }
         .integrantes-list li {
-            display: flex; align-items: center; gap: 10px; font-weight: 600;
-            background: rgba(255, 255, 255, 0.08); padding: 8px 14px; border-radius: 14px;
-            border: 1px solid var(--tarjeta-borde);
+            display: flex; align-items: center; gap: 8px; font-weight: 600;
+            background: rgba(255, 255, 255, 0.08); padding: 8px 12px; border-radius: 12px;
+            border: 1px solid var(--tarjeta-borde); font-size: 0.88rem;
         }
 
         .form-group {
-            display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; text-align: left;
+            display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; text-align: left;
         }
-        .form-group label { font-size: 0.88rem; font-weight: 600; }
+        .form-group label { font-size: 0.85rem; font-weight: 600; }
         .form-input {
-            width: 100%; padding: 11px 14px; border-radius: 14px;
+            width: 100%; padding: 10px 12px; border-radius: 12px;
             border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
-            color: var(--color-texto); font-size: 0.95rem; outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            color: var(--color-texto); font-size: 0.9rem; outline: none;
         }
-        .form-input:focus { border-color: var(--color-acento); box-shadow: 0 0 10px var(--acento-glow); }
 
         .btn-submit { 
-            width: 100%; padding: 12px; font-size: 0.98rem; font-weight: 600; 
+            width: 100%; padding: 11px; font-size: 0.92rem; font-weight: 600; 
             background: var(--color-boton); color: var(--color-boton-texto); 
-            border: none; border-radius: 16px; cursor: pointer; margin-top: 6px;
+            border: none; border-radius: 14px; cursor: pointer; margin-top: 5px;
             box-shadow: 0 4px 12px var(--acento-glow);
-            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease;
         }
-        .btn-submit:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 10px 20px var(--acento-glow); }
 
         .error-msg {
-            font-size: 0.78rem; color: #ff3b30; font-weight: 600; display: none; margin-top: 2px;
+            font-size: 0.75rem; color: #ff3b30; font-weight: 600; display: none; margin-top: 2px;
         }
 
         /* EFECTO PROFUNDIDAD 3D */
         body.efecto-3d-activo {
             --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 100%);
+        }
+
+        /* 📱 REGLAS DE RESPONSIVIDAD PARA CELULARES */
+        @media (max-width: 650px) {
+            header { margin: 10px 3% 0; top: 10px; border-radius: 16px; }
+            .navbar { flex-direction: column; gap: 10px; padding: 0.8rem 3%; }
+            .logo { font-size: 1.3rem; }
+            .nav-links { width: 100%; justify-content: center; gap: 6px; }
+            .btn-nav-inicio, .btn-nav-registro, .btn-nav-novedades {
+                padding: 7px 10px; font-size: 0.8rem; border-radius: 12px; flex: 1; text-align: center; justify-content: center;
+            }
+
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.92rem; }
+            .hero { padding: 22px 18px; border-radius: 20px; }
+
+            .card-container { padding: 25px 18px; border-radius: 20px; }
+            .quote-box { font-size: 0.98rem; min-height: 55px; }
+
+            .sidebar { width: 280px; left: -290px; padding: 25px 18px; }
         }
     </style>
 </head>
@@ -744,15 +752,11 @@
 
         let ultimoValorOpacidad = 0.65;
 
-        // MATERÁTICA CORREGIDA DEL SLIDER DE TRANSPARENCIA:
-        // 10% del slider = Opacidad 0.95 (casi sólido)
-        // 100% del slider = Opacidad 0.15 (máxima transparencia)
         inputTransparencia.addEventListener('input', (e) => {
             if (!toggleTransparencia.checked) return;
             const sliderVal = parseInt(e.target.value);
             valTransparencia.textContent = `${sliderVal}%`;
             
-            // Invertimos la escala lógica
             ultimoValorOpacidad = 1.05 - (sliderVal / 100);
             if (ultimoValorOpacidad < 0.15) ultimoValorOpacidad = 0.15;
             if (ultimoValorOpacidad > 0.95) ultimoValorOpacidad = 0.95;
@@ -778,9 +782,18 @@
             }
         });
 
+        /* PARALLAX (OPTIMIZADO PARA NO LAGGAR CELULARES HELIO G81) */
         let parallaxActivo = true;
+        const esMovil = window.innerWidth <= 650;
+
+        // Desactivar Parallax por defecto en pantallas chicas para ahorrar recursos
+        if (esMovil) {
+            parallaxActivo = false;
+            toggleParallax.checked = false;
+        }
+
         document.addEventListener('mousemove', (e) => {
-            if (!parallaxActivo) return;
+            if (!parallaxActivo || esMovil) return;
             const x = (window.innerWidth / 2 - e.clientX) / 45;
             const y = (window.innerHeight / 2 - e.clientY) / 45;
             bgCurrent.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
@@ -834,8 +847,8 @@
             toggle3D.checked = true;
             document.body.classList.add('efecto-3d-activo');
             
-            toggleParallax.checked = true;
-            parallaxActivo = true;
+            toggleParallax.checked = !esMovil;
+            parallaxActivo = !esMovil;
 
             document.body.classList.remove('dark-mode');
             btnOscuro.innerHTML = '🌙 Modo Oscuro';
