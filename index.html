@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Alegría - Home</title>
+    <style>
+        :root {
+            --color-texto: #1d1d1f;
+            --opacidad-tarjeta: 0.65;
+            --tarjeta-bg: rgba(255, 255, 255, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(255, 255, 255, 0.8);
+            --header-bg: rgba(255, 255, 255, var(--opacidad-tarjeta));
+            --btn-inicio-bg: rgba(255, 255, 255, 0.7);
+            --sombra-flotante: 0 20px 40px rgba(0, 0, 0, 0.15);
+            
+            --color-boton: #1d1d1f;
+            --color-boton-texto: #ffffff;
+            --color-acento: #1d1d1f;
+            --acento-glow: rgba(0, 0, 0, 0.1);
+            
+            --capa-oscura: rgba(0, 0, 0, 0);
+            --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 100%, rgba(0,0,0,1) 100%);
+        }
+
+        body.dark-mode {
+            --color-texto: #f5f5f7;
+            --tarjeta-bg: rgba(18, 18, 24, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(255, 255, 255, 0.18);
+            --header-bg: rgba(18, 18, 24, var(--opacidad-tarjeta));
+            --btn-inicio-bg: rgba(255, 255, 255, 0.12);
+            --sombra-flotante: 0 20px 50px rgba(0, 0, 0, 0.7);
+            --color-boton: #ffffff;
+            --color-boton-texto: #0a0a0c;
+            --color-acento: #ffffff;
+            --acento-glow: rgba(255, 255, 255, 0.15);
+            --capa-oscura: rgba(0, 0, 0, 0.45);
+        }
+
+        /* 🎨 TEMAS DE COLOR */
+        body.tema-azul {
+            --color-boton: linear-gradient(135deg, rgba(10, 37, 64, 0.85), rgba(0, 113, 227, 0.85));
+            --color-acento: #0a2540;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(10, 37, 64, var(--opacidad-tarjeta));
+            --header-bg: rgba(10, 37, 64, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(41, 151, 255, 0.4);
+            --btn-inicio-bg: rgba(0, 113, 227, 0.25);
+            --acento-glow: rgba(0, 113, 227, 0.4);
+        }
+        body.dark-mode.tema-azul {
+            --color-boton: linear-gradient(135deg, rgba(0, 113, 227, 0.9), rgba(41, 151, 255, 0.9));
+            --color-acento: #2997ff;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(8, 24, 48, var(--opacidad-tarjeta));
+            --header-bg: rgba(8, 24, 48, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(41, 151, 255, 0.3);
+            --btn-inicio-bg: rgba(41, 151, 255, 0.15);
+            --acento-glow: rgba(41, 151, 255, 0.5);
+        }
+
+        body.tema-morado {
+            --color-boton: linear-gradient(135deg, rgba(60, 9, 108, 0.85), rgba(138, 43, 226, 0.85));
+            --color-acento: #8a2be2;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(40, 15, 60, var(--opacidad-tarjeta));
+            --header-bg: rgba(40, 15, 60, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(157, 78, 221, 0.4);
+            --btn-inicio-bg: rgba(138, 43, 226, 0.25);
+            --acento-glow: rgba(138, 43, 226, 0.4);
+        }
+        body.dark-mode.tema-morado {
+            --color-boton: linear-gradient(135deg, rgba(123, 44, 191, 0.9), rgba(157, 78, 221, 0.9));
+            --color-acento: #9d4edd;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(24, 10, 40, var(--opacidad-tarjeta));
+            --header-bg: rgba(24, 10, 40, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(157, 78, 221, 0.3);
+            --btn-inicio-bg: rgba(157, 78, 221, 0.15);
+            --acento-glow: rgba(157, 78, 221, 0.5);
+        }
+
+        body.tema-verde {
+            --color-boton: linear-gradient(135deg, rgba(6, 78, 59, 0.85), rgba(16, 185, 129, 0.85));
+            --color-acento: #10b981;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(10, 45, 35, var(--opacidad-tarjeta));
+            --header-bg: rgba(10, 45, 35, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(52, 211, 153, 0.4);
+            --btn-inicio-bg: rgba(16, 185, 129, 0.25);
+            --acento-glow: rgba(16, 185, 129, 0.4);
+        }
+        body.dark-mode.tema-verde {
+            --color-boton: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(52, 211, 153, 0.9));
+            --color-acento: #34d399;
+            --color-boton-texto: #0a0a0c;
+            --tarjeta-bg: rgba(6, 30, 22, var(--opacidad-tarjeta));
+            --header-bg: rgba(6, 30, 22, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(52, 211, 153, 0.3);
+            --btn-inicio-bg: rgba(52, 211, 153, 0.15);
+            --acento-glow: rgba(52, 211, 153, 0.5);
+        }
+
+        body.tema-gamer {
+            --color-boton: linear-gradient(135deg, rgba(144, 0, 32, 0.85), rgba(250, 0, 63, 0.85));
+            --color-acento: #fa003f;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(45, 10, 20, var(--opacidad-tarjeta));
+            --header-bg: rgba(45, 10, 20, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(255, 51, 102, 0.4);
+            --btn-inicio-bg: rgba(250, 0, 63, 0.25);
+            --acento-glow: rgba(250, 0, 63, 0.4);
+        }
+        body.dark-mode.tema-gamer {
+            --color-boton: linear-gradient(135deg, rgba(250, 0, 63, 0.9), rgba(255, 51, 102, 0.9));
+            --color-acento: #ff3366;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(25, 5, 12, var(--opacidad-tarjeta));
+            --header-bg: rgba(25, 5, 12, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(255, 51, 102, 0.3);
+            --btn-inicio-bg: rgba(255, 51, 102, 0.15);
+            --acento-glow: rgba(255, 51, 102, 0.5);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        }
+
+        body { 
+            background-color: #0b0c10;
+            color: var(--color-texto); 
+            transition: color 0.4s ease; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-layer {
+            position: fixed;
+            top: -5%; left: -5%; width: 110%; height: 110%;
+            background-size: cover; background-position: center;
+            z-index: -3; transition: opacity 0.8s ease-in-out, transform 0.15s ease-out;
+            will-change: transform;
+        }
+
+        #bg-current { opacity: 1; }
+        #bg-next { opacity: 0; }
+
+        .dark-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--capa-oscura);
+            z-index: -2; transition: background-color 0.4s ease;
+            pointer-events: none;
+        }
+
+        /* BARRA LATERAL MAGICOS */
+        .sidebar {
+            position: fixed;
+            top: 0; left: -320px; width: 310px; height: 100%;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--tarjeta-borde);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+            z-index: 200; padding: 35px 25px;
+            transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.4s ease, border-color 0.4s ease;
+            display: flex; flex-direction: column; gap: 18px;
+            overflow-y: auto;
+        }
+
+        .sidebar.active { left: 0; }
+
+        .sidebar-header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--tarjeta-borde); padding-bottom: 12px;
+        }
+
+        .sidebar-header h3 { font-size: 1.15rem; font-weight: 700; }
+
+        .btn-cerrar-sidebar {
+            background: none; border: none; font-size: 1.3rem;
+            color: var(--color-texto); cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
+        }
+        .btn-cerrar-sidebar:hover { opacity: 1; }
+
+        .control-group { display: flex; flex-direction: column; gap: 8px; }
+        .control-group label { font-size: 0.9rem; font-weight: 600; display: flex; justify-content: space-between; }
+        .slider-transparencia { width: 100%; accent-color: var(--color-acento); cursor: pointer; }
+
+        /* SELECTOR DE PACK DE FONDOS (CORREGIDO BUG DE TEXTO EN MODO OSCURO) */
+        .select-pack-fondos {
+            width: 100%; padding: 9px 12px; border-radius: 14px;
+            border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
+            color: var(--color-texto); font-weight: 600; font-size: 0.88rem; cursor: pointer;
+            outline: none; transition: border-color 0.3s ease;
+        }
+        .select-pack-fondos option {
+            background-color: #1a1a20;
+            color: #ffffff;
+        }
+
+        .temas-container {
+            display: flex; gap: 10px; justify-content: space-between; margin-top: 5px;
+        }
+        .btn-tema {
+            width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--tarjeta-borde);
+            cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-tema:hover { transform: scale(1.1); box-shadow: 0 4px 10px var(--acento-glow); }
+        
+        .tema-default { background: #1d1d1f; }
+        .tema-azul { background: linear-gradient(135deg, #0a2540, #2997ff); }
+        .tema-morado { background: linear-gradient(135deg, #3c096c, #9d4edd); }
+        .tema-verde { background: linear-gradient(135deg, #064e3b, #34d399); }
+        .tema-gamer { background: linear-gradient(135deg, #900020, #ff3366); }
+
+        .switch-container {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.9rem; font-weight: 600;
+        }
+        .switch { position: relative; display: inline-block; width: 46px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider-switch {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(150, 150, 150, 0.4); transition: 0.3s; border-radius: 24px;
+        }
+        .slider-switch:before {
+            position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+            background-color: white; transition: 0.3s; border-radius: 50%;
+        }
+        input:checked + .slider-switch { background-color: var(--color-acento); }
+        input:checked + .slider-switch:before { transform: translateX(22px); }
+
+        .btn-sidebar-oscuro {
+            width: 100%; padding: 10px; font-weight: 600; border-radius: 14px;
+            border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
+            color: var(--color-texto); cursor: pointer; transition: transform 0.2s ease, opacity 0.2s ease;
+            font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-sidebar-oscuro:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        .sidebar-actions {
+            display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 15px;
+            border-top: 1px solid var(--tarjeta-borde);
+        }
+        .btn-sidebar-save, .btn-sidebar-reset {
+            padding: 10px; font-weight: 600; border-radius: 14px; border: 1px solid var(--tarjeta-borde);
+            cursor: pointer; transition: transform 0.2s ease, opacity 0.2s ease; font-size: 0.85rem;
+        }
+        .btn-sidebar-save {
+            background-color: var(--color-boton); color: var(--color-boton-texto); border: none;
+        }
+        .btn-sidebar-reset {
+            background-color: transparent; color: var(--color-texto);
+        }
+        .btn-sidebar-save:hover, .btn-sidebar-reset:hover {
+            transform: translateY(-2px); opacity: 0.9;
+        }
+
+        /* Barra Superior (ahora conectada a la variable de transparencia) */
+        header { 
+            margin: 25px 5% 0; background-color: var(--header-bg); 
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--tarjeta-borde); border-radius: 20px;
+            box-shadow: var(--sombra-flotante); position: sticky; top: 25px; z-index: 100;
+            transition: all 0.4s ease;
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
+        
+        .logo { 
+            font-size: 1.5rem; font-weight: 800; cursor: pointer; 
+            letter-spacing: -0.5px; color: var(--color-texto);
+            transition: transform 0.25s ease; user-select: none;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .logo:hover { transform: scale(1.04); }
+        .logo span { opacity: 0.5; }
+        
+        .tuerca-icon {
+            display: inline-block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .logo.activa .tuerca-icon {
+            transform: rotate(180deg);
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 15px; align-items: center; }
+
+        .btn-nav-inicio, .btn-nav-registro, .btn-nav-novedades {
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            padding: 9px 18px; border-radius: 16px; cursor: pointer; display: inline-flex;
+            align-items: center; gap: 6px;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-nav-inicio, .btn-nav-novedades {
+            color: var(--color-texto); background-color: var(--btn-inicio-bg);
+            border: 1px solid var(--tarjeta-borde); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-nav-registro { 
+            background: var(--color-boton) !important; color: var(--color-boton-texto) !important; 
+            border: 1px solid var(--tarjeta-borde); box-shadow: 0 4px 12px var(--acento-glow);
+        }
+
+        .btn-nav-inicio:hover, .btn-nav-registro:hover, .btn-nav-novedades:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 22px var(--acento-glow) !important;
+        }
+
+        .btn-nav-inicio:active, .btn-nav-registro:active, .btn-nav-novedades:active { transform: translateY(-1px) scale(0.96); }
+
+        main {
+            position: relative; z-index: 1; flex: 1; display: flex;
+            flex-direction: column; justify-content: center; padding: 30px 20px;
+        }
+
+        .hero { 
+            margin: 0 auto 25px; padding: 35px 40px; text-align: center; 
+            background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); border: 1px solid var(--tarjeta-borde);
+            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 650px; width: 90%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+        }
+        .hero:hover { transform: translateY(-4px); box-shadow: 0 25px 45px var(--acento-glow); }
+        .hero h1 { font-size: 2.6rem; color: var(--color-texto); margin-bottom: 8px; font-weight: 800; letter-spacing: -1px; }
+        .hero p { font-size: 1.1rem; opacity: 0.9; font-weight: 500; }
+
+        .interactive-section { padding: 0 5% 20px; text-align: center; }
+
+        .card-container { 
+            background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); max-width: 480px; margin: 0 auto; 
+            padding: 35px 30px; border-radius: 24px; box-shadow: var(--sombra-flotante);
+            border: 1px solid var(--tarjeta-borde); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease, -webkit-mask-image 0.7s cubic-bezier(0.4, 0, 0.2, 1), mask-image 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            -webkit-mask-image: var(--tarjeta-mask);
+            mask-image: var(--tarjeta-mask);
+        }
+        .card-container:hover { transform: translateY(-6px); box-shadow: 0 25px 50px var(--acento-glow); }
+        .card-container h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.5px; }
+
+        .quote-box {
+            font-size: 1.15rem; font-weight: 600; min-height: 70px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; line-height: 1.5; transition: opacity 0.25s ease;
+        }
+
+        .btn-action { 
+            padding: 11px 22px; font-size: 0.95rem; font-weight: 600; 
+            background: var(--color-boton); color: var(--color-boton-texto); 
+            border: none; border-radius: 20px; cursor: pointer; 
+            box-shadow: 0 4px 12px var(--acento-glow);
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+        .btn-action:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 22px var(--acento-glow); opacity: 0.95; }
+        .btn-action:active { transform: scale(0.96); }
+
+        footer { 
+            position: relative; z-index: 1; margin: 20px 5%; text-align: center; 
+            padding: 15px; font-size: 0.85rem; background-color: var(--header-bg); 
+            backdrop-filter: blur(10px); border: 1px solid var(--tarjeta-borde);
+            border-radius: 18px; box-shadow: var(--sombra-flotante); transition: all 0.4s ease;
+        }
+
+        /* MODALES FLOTANTES */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 300; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+        .modal-content {
+            background-color: var(--tarjeta-bg); border: 1px solid var(--tarjeta-borde);
+            box-shadow: var(--sombra-flotante); border-radius: 28px; width: 90%; max-width: 500px;
+            padding: 35px 30px; transform: scale(0.85) translateY(20px); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative; text-align: left; max-height: 85vh; overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; border-bottom: 1px solid var(--tarjeta-borde); padding-bottom: 12px;
+        }
+        .modal-header h2 { font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+
+        .btn-cerrar-modal {
+            background: none; border: none; font-size: 1.4rem; color: var(--color-texto);
+            cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
+        }
+        .btn-cerrar-modal:hover { opacity: 1; }
+
+        .modal-body { font-size: 0.98rem; line-height: 1.6; display: flex; flex-direction: column; gap: 16px; }
+        
+        .version-badge {
+            display: inline-block; background-color: var(--btn-inicio-bg); border: 1px solid var(--tarjeta-borde);
+            padding: 4px 12px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; width: fit-content;
+        }
+
+        .integrantes-list {
+            list-style: none; padding-left: 0; margin-top: 6px; display: flex; flex-direction: column; gap: 8px;
+        }
+        .integrantes-list li {
+            display: flex; align-items: center; gap: 10px; font-weight: 600;
+            background: rgba(255, 255, 255, 0.08); padding: 8px 14px; border-radius: 14px;
+            border: 1px solid var(--tarjeta-borde);
+        }
+
+        .form-group {
+            display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; text-align: left;
+        }
+        .form-group label { font-size: 0.88rem; font-weight: 600; }
+        .form-input {
+            width: 100%; padding: 11px 14px; border-radius: 14px;
+            border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
+            color: var(--color-texto); font-size: 0.95rem; outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus { border-color: var(--color-acento); box-shadow: 0 0 10px var(--acento-glow); }
+
+        .btn-submit { 
+            width: 100%; padding: 12px; font-size: 0.98rem; font-weight: 600; 
+            background: var(--color-boton); color: var(--color-boton-texto); 
+            border: none; border-radius: 16px; cursor: pointer; margin-top: 6px;
+            box-shadow: 0 4px 12px var(--acento-glow);
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+        .btn-submit:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 10px 20px var(--acento-glow); }
+
+        .error-msg {
+            font-size: 0.78rem; color: #ff3b30; font-weight: 600; display: none; margin-top: 2px;
+        }
+
+        /* EFECTO PROFUNDIDAD 3D */
+        body.efecto-3d-activo {
+            --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bg-current" class="bg-layer"></div>
+    <div id="bg-next" class="bg-layer"></div>
+    <div class="dark-overlay"></div>
+
+    <!-- MENÚ LATERAL DE AJUSTES -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>⚙️ Ajustes de Interfaz</h3>
+            <button id="btn-cerrar-sidebar" class="btn-cerrar-sidebar">✕</button>
+        </div>
+
+        <div class="control-group">
+            <label>Apariencia</label>
+            <button id="btn-oscuro" class="btn-sidebar-oscuro">🌙 Modo Oscuro</button>
+        </div>
+
+        <div class="control-group">
+            <label>Colección de Fondos 🖼️</label>
+            <select id="select-pack-fondos" class="select-pack-fondos">
+                <option value="naturaleza">🌲 Naturaleza Dinámica</option>
+                <option value="espacio">🪐 Espacio & Galaxia</option>
+                <option value="marmol">🖤 Mármol Oscuro & Texturas</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Tema de Color</label>
+            <div class="temas-container">
+                <button class="btn-tema tema-default" onclick="cambiarTema('')" title="Minimalista"></button>
+                <button class="btn-tema tema-azul" onclick="cambiarTema('tema-azul')" title="Azul Océano Profundo"></button>
+                <button class="btn-tema tema-morado" onclick="cambiarTema('tema-morado')" title="Morado Galáctico"></button>
+                <button class="btn-tema tema-verde" onclick="cambiarTema('tema-verde')" title="Verde Esmeralda"></button>
+                <button class="btn-tema tema-gamer" onclick="cambiarTema('tema-gamer')" title="Modo Gamer (Opera GX)"></button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label>Nivel de Transparencia <span id="val-transparencia">65%</span></label>
+            <input type="range" id="input-transparencia" class="slider-transparencia" min="10" max="100" value="65">
+        </div>
+
+        <div class="switch-container">
+            <span>Efecto Transparencia</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-transparencia" checked>
+                <span class="slider-switch"></span>
+            </label>
+        </div>
+
+        <div class="switch-container">
+            <span>Efecto Profundidad 3D</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-3d" checked>
+                <span class="slider-switch"></span>
+            </label>
+        </div>
+
+        <div class="switch-container">
+            <span>Efecto Parallax (Mouse)</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-parallax" checked>
+                <span class="slider-switch"></span>
+            </label>
+        </div>
+
+        <div class="sidebar-actions">
+            <button id="btn-guardar-ajustes" class="btn-sidebar-save">💾 Guardar Ajustes</button>
+            <button id="btn-restablecer-ajustes" class="btn-sidebar-reset">🔄 Restablecer Ajustes</button>
+        </div>
+    </aside>
+
+    <!-- MODAL DE NOVEDADES -->
+    <div id="modal-novedades" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🚀 Novedades de la Web</h2>
+                <button id="btn-cerrar-novedades" class="btn-cerrar-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <span class="version-badge">📌 Versión Oficial 1.0 (Lanzamiento)</span>
+                
+                <p>Plataforma interactiva vanguardista desarrollada para las actividades del área de <strong>Educación para el Trabajo (EPT)</strong> del colegio <strong>Paola Frassinetti Fe y Alegría 45</strong>.</p>
+
+                <p><strong>👥 Equipo de Emprendedores:</strong></p>
+                <ul class="integrantes-list">
+                    <li>👨‍💻 Luis Adrian Cueva Yana</li>
+                    <li>👨‍💻 Josué Manuel Vargas Inga</li>
+                    <li>👨‍💻 Juan Jose Massi Pinto</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE REGISTRO -->
+    <div id="modal-registro" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✨ Registro de Usuario</h2>
+                <button id="btn-cerrar-registro" class="btn-cerrar-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-registro" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" class="form-input" placeholder="Ej. Juan Jose">
+                        <span id="error-nombre" class="error-msg">⚠️ Este campo es obligatorio.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="text" id="email" class="form-input" placeholder="usuario@gmail.com">
+                        <span id="error-email" class="error-msg">⚠️ Ingrese un correo válido (ej. falta '@' o dominio).</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" class="form-input" placeholder="••••••••">
+                        <span id="error-password" class="error-msg">⚠️ Este campo es obligatorio.</span>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo" id="logo-btn" title="Haz clic para abrir ajustes">
+                Mundo <span>Alegría</span> <span class="tuerca-icon">⚙️</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="btn-nav-inicio">Inicio</a></li>
+                <li><button id="btn-abrir-novedades" class="btn-nav-novedades">Novedades ✨</button></li>
+                <li><button id="btn-abrir-registro" class="btn-nav-registro">Registrarse</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Mundo Alegría</h1>
+            <p>Un espacio donde la naturaleza y el diseño se encuentran.</p>
+        </section>
+
+        <section class="interactive-section">
+            <div class="card-container">
+                <h2>Frase del Día ✨</h2>
+                <div class="quote-box" id="frase-texto">
+                    "Diseñar no es solo cómo se ve, sino cómo funciona."
+                </div>
+                <button id="btn-frase" class="btn-action">Nueva frase</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="footer-creditos">&copy; 2026 Mundo Alegría • Edición Naturaleza Dinámica</p>
+    </footer>
+
+    <script>
+        const coleccionesFondos = {
+            naturaleza: [
+                'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1920&q=80'
+            ],
+            espacio: [
+                'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=1920&q=80'
+            ],
+            marmol: [
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80'
+            ]
+        };
+
+        const frases = [
+            '"Diseñar no es solo cómo se ve, sino cómo funciona."',
+            '"La simplicidad es la máxima sofisticación."',
+            '"Haz de cada detalle algo memorable."',
+            '"Menos elementos, más impacto visual."',
+            '"La creatividad es la inteligencia divirtiéndose."'
+        ];
+
+        const bgCurrent = document.getElementById('bg-current');
+        const bgNext = document.getElementById('bg-next');
+        const btnFrase = document.getElementById('btn-frase');
+        const fraseTexto = document.getElementById('frase-texto');
+        const btnOscuro = document.getElementById('btn-oscuro');
+        const selectPackFondos = document.getElementById('select-pack-fondos');
+        const footerCreditos = document.getElementById('footer-creditos');
+
+        let packActual = 'naturaleza';
+        let fotosFondo = coleccionesFondos[packActual];
+        let indiceActual = 0;
+        let temaActual = '';
+
+        bgCurrent.style.backgroundImage = `url('${fotosFondo[0]}')`;
+        fraseTexto.textContent = frases[0];
+
+        selectPackFondos.addEventListener('change', (e) => {
+            packActual = e.target.value;
+            fotosFondo = coleccionesFondos[packActual];
+            indiceActual = 0;
+
+            bgNext.style.backgroundImage = `url('${fotosFondo[0]}')`;
+            bgNext.style.opacity = '1';
+
+            setTimeout(() => {
+                bgCurrent.style.backgroundImage = `url('${fotosFondo[0]}')`;
+                bgNext.style.opacity = '0';
+            }, 600);
+
+            const nombresPacks = {
+                naturaleza: 'Naturaleza Dinámica',
+                espacio: 'Espacio & Galaxia',
+                marmol: 'Mármol Oscuro & Texturas'
+            };
+            footerCreditos.innerHTML = `&copy; 2026 Mundo Alegría • Edición ${nombresPacks[packActual]}`;
+        });
+
+        btnFrase.addEventListener('click', () => {
+            indiceActual = (indiceActual + 1) % fotosFondo.length;
+
+            bgNext.style.backgroundImage = `url('${fotosFondo[indiceActual]}')`;
+            bgNext.style.opacity = '1';
+
+            fraseTexto.style.opacity = '0';
+            setTimeout(() => {
+                fraseTexto.textContent = frases[indiceActual];
+                fraseTexto.style.opacity = '1';
+            }, 200);
+
+            setTimeout(() => {
+                bgCurrent.style.backgroundImage = `url('${fotosFondo[indiceActual]}')`;
+                bgNext.style.opacity = '0';
+            }, 800);
+        });
+
+        btnOscuro.addEventListener('click', () => { 
+            document.body.classList.toggle('dark-mode'); 
+            const esOscuro = document.body.classList.contains('dark-mode');
+            btnOscuro.innerHTML = esOscuro ? '☀️ Modo Claro' : '🌙 Modo Oscuro';
+        });
+
+        // MODALES
+        const modalNovedades = document.getElementById('modal-novedades');
+        document.getElementById('btn-abrir-novedades').addEventListener('click', () => modalNovedades.classList.add('active'));
+        document.getElementById('btn-cerrar-novedades').addEventListener('click', () => modalNovedades.classList.remove('active'));
+
+        const modalRegistro = document.getElementById('modal-registro');
+        document.getElementById('btn-abrir-registro').addEventListener('click', () => modalRegistro.classList.add('active'));
+        document.getElementById('btn-cerrar-registro').addEventListener('click', () => modalRegistro.classList.remove('active'));
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modalNovedades) modalNovedades.classList.remove('active');
+            if (e.target === modalRegistro) modalRegistro.classList.remove('active');
+        });
+
+        // SIDEBAR Y AJUSTES
+        const logoBtn = document.getElementById('logo-btn');
+        const sidebar = document.getElementById('sidebar');
+        const btnCerrarSidebar = document.getElementById('btn-cerrar-sidebar');
+        const inputTransparencia = document.getElementById('input-transparencia');
+        const valTransparencia = document.getElementById('val-transparencia');
+        const toggleTransparencia = document.getElementById('toggle-transparencia');
+        const toggle3D = document.getElementById('toggle-3d');
+        const toggleParallax = document.getElementById('toggle-parallax');
+        const btnGuardarAjustes = document.getElementById('btn-guardar-ajustes');
+        const btnRestablecerAjustes = document.getElementById('btn-restablecer-ajustes');
+
+        document.body.classList.add('efecto-3d-activo');
+
+        logoBtn.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            logoBtn.classList.add('activa');
+        });
+
+        btnCerrarSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            logoBtn.classList.remove('activa');
+        });
+
+        let ultimoValorOpacidad = 0.65;
+
+        // MATERÁTICA CORREGIDA DEL SLIDER DE TRANSPARENCIA:
+        // 10% del slider = Opacidad 0.95 (casi sólido)
+        // 100% del slider = Opacidad 0.15 (máxima transparencia)
+        inputTransparencia.addEventListener('input', (e) => {
+            if (!toggleTransparencia.checked) return;
+            const sliderVal = parseInt(e.target.value);
+            valTransparencia.textContent = `${sliderVal}%`;
+            
+            // Invertimos la escala lógica
+            ultimoValorOpacidad = 1.05 - (sliderVal / 100);
+            if (ultimoValorOpacidad < 0.15) ultimoValorOpacidad = 0.15;
+            if (ultimoValorOpacidad > 0.95) ultimoValorOpacidad = 0.95;
+
+            document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
+        });
+
+        toggleTransparencia.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
+                inputTransparencia.disabled = false;
+            } else {
+                document.documentElement.style.setProperty('--opacidad-tarjeta', '1.0');
+                inputTransparencia.disabled = true;
+            }
+        });
+
+        toggle3D.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('efecto-3d-activo');
+            } else {
+                document.body.classList.remove('efecto-3d-activo');
+            }
+        });
+
+        let parallaxActivo = true;
+        document.addEventListener('mousemove', (e) => {
+            if (!parallaxActivo) return;
+            const x = (window.innerWidth / 2 - e.clientX) / 45;
+            const y = (window.innerHeight / 2 - e.clientY) / 45;
+            bgCurrent.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+            bgNext.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+        });
+
+        toggleParallax.addEventListener('change', (e) => {
+            parallaxActivo = e.target.checked;
+            if (!parallaxActivo) {
+                bgCurrent.style.transform = 'none';
+                bgNext.style.transform = 'none';
+            }
+        });
+
+        function cambiarTema(claseTema) {
+            document.body.classList.remove('tema-azul', 'tema-morado', 'tema-verde', 'tema-gamer');
+            if (claseTema) {
+                document.body.classList.add(claseTema);
+            }
+            temaActual = claseTema;
+        }
+
+        btnGuardarAjustes.addEventListener('click', () => {
+            const configuracion = {
+                tema: temaActual,
+                packFondos: selectPackFondos.value,
+                transparencia: inputTransparencia.value,
+                transparenciaActiva: toggleTransparencia.checked,
+                efecto3D: toggle3D.checked,
+                parallax: toggleParallax.checked,
+                modoOscuro: document.body.classList.contains('dark-mode')
+            };
+            localStorage.setItem('ajustesMundoAlegria', JSON.stringify(configuracion));
+            alert('¡Ajustes guardados con éxito! 💾✨');
+        });
+
+        btnRestablecerAjustes.addEventListener('click', () => {
+            localStorage.removeItem('ajustesMundoAlegria');
+            cambiarTema('');
+            
+            selectPackFondos.value = 'naturaleza';
+            selectPackFondos.dispatchEvent(new Event('change'));
+
+            inputTransparencia.value = 65;
+            valTransparencia.textContent = '65%';
+            ultimoValorOpacidad = 0.65;
+            document.documentElement.style.setProperty('--opacidad-tarjeta', '0.65');
+            toggleTransparencia.checked = true;
+            inputTransparencia.disabled = false;
+            
+            toggle3D.checked = true;
+            document.body.classList.add('efecto-3d-activo');
+            
+            toggleParallax.checked = true;
+            parallaxActivo = true;
+
+            document.body.classList.remove('dark-mode');
+            btnOscuro.innerHTML = '🌙 Modo Oscuro';
+
+            alert('¡Ajustes restablecidos al estado por defecto! 🔄');
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const guardado = localStorage.getItem('ajustesMundoAlegria');
+            if (guardado) {
+                const config = JSON.parse(guardado);
+                if (config.tema) cambiarTema(config.tema);
+                if (config.packFondos && coleccionesFondos[config.packFondos]) {
+                    selectPackFondos.value = config.packFondos;
+                    selectPackFondos.dispatchEvent(new Event('change'));
+                }
+                if (config.transparencia) {
+                    inputTransparencia.value = config.transparencia;
+                    valTransparencia.textContent = `${config.transparencia}%`;
+                    
+                    ultimoValorOpacidad = 1.05 - (config.transparencia / 100);
+                    if (ultimoValorOpacidad < 0.15) ultimoValorOpacidad = 0.15;
+                    if (ultimoValorOpacidad > 0.95) ultimoValorOpacidad = 0.95;
+
+                    document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
+                }
+                toggleTransparencia.checked = config.transparenciaActiva;
+                if (!config.transparenciaActiva) {
+                    document.documentElement.style.setProperty('--opacidad-tarjeta', '1.0');
+                    inputTransparencia.disabled = true;
+                }
+                toggle3D.checked = config.efecto3D;
+                if (!config.efecto3D) document.body.classList.remove('efecto-3d-activo');
+
+                toggleParallax.checked = config.parallax;
+                parallaxActivo = config.parallax;
+
+                if (config.modoOscuro) {
+                    document.body.classList.add('dark-mode');
+                    btnOscuro.innerHTML = '☀️ Modo Claro';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
