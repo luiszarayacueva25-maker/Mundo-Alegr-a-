@@ -262,7 +262,7 @@
             transform: translateY(-2px); opacity: 0.9;
         }
 
-        /* BARRA SUPERIOR ADAPTABLE */
+        /* BARRA SUPERIOR */
         header { 
             margin: 20px 4% 0; background-color: var(--header-bg); 
             backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
@@ -292,7 +292,7 @@
 
         .nav-links { display: flex; list-style: none; gap: 10px; align-items: center; }
 
-        .btn-nav-inicio, .btn-nav-registro, .btn-nav-novedades {
+        .btn-nav-inicio, .btn-nav-contacto, .btn-nav-novedades {
             text-decoration: none; font-weight: 600; font-size: 0.88rem;
             padding: 8px 14px; border-radius: 14px; cursor: pointer; display: inline-flex;
             align-items: center; gap: 6px; white-space: nowrap;
@@ -304,12 +304,12 @@
             border: 1px solid var(--tarjeta-borde); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .btn-nav-registro { 
+        .btn-nav-contacto { 
             background: var(--color-boton) !important; color: var(--color-boton-texto) !important; 
             border: 1px solid var(--tarjeta-borde); box-shadow: 0 4px 12px var(--acento-glow);
         }
 
-        .btn-nav-inicio:hover, .btn-nav-registro:hover, .btn-nav-novedades:hover {
+        .btn-nav-inicio:hover, .btn-nav-contacto:hover, .btn-nav-novedades:hover {
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 10px 20px var(--acento-glow) !important;
         }
@@ -364,7 +364,7 @@
             border-radius: 18px; box-shadow: var(--sombra-flotante); transition: all 0.4s ease;
         }
 
-        /* MODALES FLOTANTES ADAPTABLES */
+        /* MODALES FLOTANTES */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
@@ -413,10 +413,16 @@
             display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; text-align: left;
         }
         .form-group label { font-size: 0.85rem; font-weight: 600; }
-        .form-input {
+        .form-input, .form-textarea {
             width: 100%; padding: 10px 12px; border-radius: 12px;
             border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
-            color: var(--color-texto); font-size: 0.9rem; outline: none;
+            color: var(--color-texto); font-size: 0.9rem; outline: none; resize: none;
+        }
+        .form-textarea { height: 90px; }
+
+        .correo-info-box {
+            font-size: 0.85rem; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 10px;
+            text-align: center; font-weight: 600; border: 1px dashed var(--tarjeta-borde);
         }
 
         .btn-submit { 
@@ -435,23 +441,17 @@
             --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 100%);
         }
 
-        /* 📱 REGLAS DE RESPONSIVIDAD PARA CELULARES */
         @media (max-width: 650px) {
             header { margin: 10px 3% 0; top: 10px; border-radius: 16px; }
             .navbar { flex-direction: column; gap: 10px; padding: 0.8rem 3%; }
             .logo { font-size: 1.3rem; }
             .nav-links { width: 100%; justify-content: center; gap: 6px; }
-            .btn-nav-inicio, .btn-nav-registro, .btn-nav-novedades {
+            .btn-nav-inicio, .btn-nav-contacto, .btn-nav-novedades {
                 padding: 7px 10px; font-size: 0.8rem; border-radius: 12px; flex: 1; text-align: center; justify-content: center;
             }
-
             .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 0.92rem; }
             .hero { padding: 22px 18px; border-radius: 20px; }
-
             .card-container { padding: 25px 18px; border-radius: 20px; }
-            .quote-box { font-size: 0.98rem; min-height: 55px; }
-
             .sidebar { width: 280px; left: -290px; padding: 25px 18px; }
         }
     </style>
@@ -529,7 +529,7 @@
         </div>
     </aside>
 
-    <!-- MODAL DE NOVEDADES -->
+    <!-- MODAL DE NOVEDADES (VERSIÓN 1.1) -->
     <div id="modal-novedades" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -537,9 +537,12 @@
                 <button id="btn-cerrar-novedades" class="btn-cerrar-modal">✕</button>
             </div>
             <div class="modal-body">
-                <span class="version-badge">📌 Versión Oficial 1.0 (Lanzamiento)</span>
+                <span class="version-badge">📌 Versión 1.1 (Actualización Reciente)</span>
                 
-                <p>Plataforma interactiva vanguardista desarrollada para las actividades del área de <strong>Educación para el Trabajo (EPT)</strong> del colegio <strong>Paola Frassinetti Fe y Alegría 45</strong>.</p>
+                <p>¡Hemos actualizado la plataforma! En esta <strong>Versión 1.1</strong> incorporamos soporte optimizado y adaptación fluida para celulares (smartphones), mejorando el rendimiento para que los efectos corran sin lag en cualquier dispositivo móvil.</p>
+
+                <span class="version-badge" style="margin-top: 5px;">📌 Versión 1.0 (Lanzamiento Original)</span>
+                <p>Plataforma interactiva desarrollada para las actividades del área de <strong>Educación para el Trabajo (EPT)</strong> del colegio <strong>Paola Frassinetti Fe y Alegría 45</strong>.</p>
 
                 <p><strong>👥 Equipo de Emprendedores:</strong></p>
                 <ul class="integrantes-list">
@@ -551,34 +554,33 @@
         </div>
     </div>
 
-    <!-- MODAL DE REGISTRO -->
-    <div id="modal-registro" class="modal-overlay">
+    <!-- MODAL DE CONTÁCTANOS (CONECTADO A PAPILUCHO308@GMAIL.COM) -->
+    <div id="modal-contacto" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>✨ Registro de Usuario</h2>
-                <button id="btn-cerrar-registro" class="btn-cerrar-modal">✕</button>
+                <h2>📬 Contáctanos</h2>
+                <button id="btn-cerrar-contacto" class="btn-cerrar-modal">✕</button>
             </div>
             <div class="modal-body">
-                <form id="form-registro" novalidate>
+                <div class="correo-info-box">
+                    ✉️ Escríbenos directamente a:<br>
+                    <span style="color: var(--color-acento);">papilucho308@gmail.com</span>
+                </div>
+
+                <form id="form-contacto">
                     <div class="form-group">
-                        <label for="nombre">Nombre completo</label>
-                        <input type="text" id="nombre" class="form-input" placeholder="Ej. Juan Jose">
-                        <span id="error-nombre" class="error-msg">⚠️ Este campo es obligatorio.</span>
+                        <label for="nombre-contacto">Tu Nombre</label>
+                        <input type="text" id="nombre-contacto" class="form-input" placeholder="Ej. Profesor / Compañero">
+                        <span id="error-contacto-nombre" class="error-msg">⚠️ Ingrese su nombre.</span>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="text" id="email" class="form-input" placeholder="usuario@gmail.com">
-                        <span id="error-email" class="error-msg">⚠️ Ingrese un correo válido (ej. falta '@' o dominio).</span>
+                        <label for="mensaje-contacto">Mensaje</label>
+                        <textarea id="mensaje-contacto" class="form-textarea" placeholder="Escribe tu mensaje aquí..."></textarea>
+                        <span id="error-contacto-mensaje" class="error-msg">⚠️ Escriba un mensaje.</span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" id="password" class="form-input" placeholder="••••••••">
-                        <span id="error-password" class="error-msg">⚠️ Este campo es obligatorio.</span>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Registrarse</button>
+                    <button type="submit" class="btn-submit">Enviar Mensaje por Gmail 🚀</button>
                 </form>
             </div>
         </div>
@@ -592,7 +594,7 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="btn-nav-inicio">Inicio</a></li>
                 <li><button id="btn-abrir-novedades" class="btn-nav-novedades">Novedades ✨</button></li>
-                <li><button id="btn-abrir-registro" class="btn-nav-registro">Registrarse</button></li>
+                <li><button id="btn-abrir-contacto" class="btn-nav-contacto">Contáctanos</button></li>
             </ul>
         </nav>
     </header>
@@ -717,13 +719,55 @@
         document.getElementById('btn-abrir-novedades').addEventListener('click', () => modalNovedades.classList.add('active'));
         document.getElementById('btn-cerrar-novedades').addEventListener('click', () => modalNovedades.classList.remove('active'));
 
-        const modalRegistro = document.getElementById('modal-registro');
-        document.getElementById('btn-abrir-registro').addEventListener('click', () => modalRegistro.classList.add('active'));
-        document.getElementById('btn-cerrar-registro').addEventListener('click', () => modalRegistro.classList.remove('active'));
+        const modalContacto = document.getElementById('modal-contacto');
+        document.getElementById('btn-abrir-contacto').addEventListener('click', () => modalContacto.classList.add('active'));
+        document.getElementById('btn-cerrar-contacto').addEventListener('click', () => modalContacto.classList.remove('active'));
 
         window.addEventListener('click', (e) => {
             if (e.target === modalNovedades) modalNovedades.classList.remove('active');
-            if (e.target === modalRegistro) modalRegistro.classList.remove('active');
+            if (e.target === modalContacto) modalContacto.classList.remove('active');
+        });
+
+        // ENVÍO DE CORREO AUTOMÁTICO A PAPILUCHO308@GMAIL.COM
+        const formContacto = document.getElementById('form-contacto');
+        const nombreContacto = document.getElementById('nombre-contacto');
+        const mensajeContacto = document.getElementById('mensaje-contacto');
+        const errorContactoNombre = document.getElementById('error-contacto-nombre');
+        const errorContactoMensaje = document.getElementById('error-contacto-mensaje');
+
+        formContacto.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let valido = true;
+
+            if (nombreContacto.value.trim() === '') {
+                errorContactoNombre.style.display = 'block';
+                nombreContacto.style.borderColor = '#ff3b30';
+                valido = false;
+            } else {
+                errorContactoNombre.style.display = 'none';
+                nombreContacto.style.borderColor = '';
+            }
+
+            if (mensajeContacto.value.trim() === '') {
+                errorContactoMensaje.style.display = 'block';
+                mensajeContacto.style.borderColor = '#ff3b30';
+                valido = false;
+            } else {
+                errorContactoMensaje.style.display = 'none';
+                mensajeContacto.style.borderColor = '';
+            }
+
+            if (valido) {
+                const nombre = encodeURIComponent(nombreContacto.value.trim());
+                const mensaje = encodeURIComponent(mensajeContacto.value.trim());
+                const asunto = encodeURIComponent("Mensaje desde la web Mundo Alegría de EPT");
+                
+                // Abre el cliente de correo del usuario directo a tu Gmail con el mensaje escrito
+                window.location.href = `mailto:papilucho308@gmail.com?subject=${asunto}&body=Hola, mi nombre es ${nombre}.%0D%0A%0D%0AMensaje:%0D%0A${mensaje}`;
+                
+                formContacto.reset();
+                modalContacto.classList.remove('active');
+            }
         });
 
         // SIDEBAR Y AJUSTES
@@ -782,11 +826,9 @@
             }
         });
 
-        /* PARALLAX (OPTIMIZADO PARA NO LAGGAR CELULARES HELIO G81) */
         let parallaxActivo = true;
         const esMovil = window.innerWidth <= 650;
 
-        // Desactivar Parallax por defecto en pantallas chicas para ahorrar recursos
         if (esMovil) {
             parallaxActivo = false;
             toggleParallax.checked = false;
@@ -881,7 +923,7 @@
                     inputTransparencia.disabled = true;
                 }
                 toggle3D.checked = config.efecto3D;
-                if (!config.efecto3D) document.body.classList.remove('efecto-3d-activo');
+                if (!config.efecode3D) document.body.classList.remove('efecto-3d-activo');
 
                 toggleParallax.checked = config.parallax;
                 parallaxActivo = config.parallax;
