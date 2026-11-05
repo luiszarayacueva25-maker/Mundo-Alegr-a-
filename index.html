@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundo Alegría - Home</title>
+    <title>Mundo Alegría - Conciencia Económica</title>
     <style>
         :root {
             --color-texto: #1d1d1f;
@@ -122,6 +122,70 @@
             --acento-glow: rgba(255, 51, 102, 0.5);
         }
 
+        /* NUEVOS TEMAS: ROSA, AMARILLO Y NARANJA */
+        body.tema-rosa {
+            --color-boton: linear-gradient(135deg, rgba(216, 27, 96, 0.85), rgba(255, 64, 129, 0.85));
+            --color-acento: #ff4081;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(60, 10, 30, var(--opacidad-tarjeta));
+            --header-bg: rgba(60, 10, 30, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(255, 64, 129, 0.4);
+            --btn-inicio-bg: rgba(255, 64, 129, 0.25);
+            --acento-glow: rgba(255, 64, 129, 0.4);
+        }
+        body.dark-mode.tema-rosa {
+            --color-boton: linear-gradient(135deg, rgba(255, 64, 129, 0.9), rgba(255, 128, 171, 0.9));
+            --color-acento: #ff80ab;
+            --color-boton-texto: #0a0a0c;
+            --tarjeta-bg: rgba(35, 5, 18, var(--opacidad-tarjeta));
+            --header-bg: rgba(35, 5, 18, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(255, 128, 171, 0.3);
+            --btn-inicio-bg: rgba(255, 128, 171, 0.15);
+            --acento-glow: rgba(255, 128, 171, 0.5);
+        }
+
+        body.tema-amarillo {
+            --color-boton: linear-gradient(135deg, rgba(245, 158, 11, 0.85), rgba(251, 191, 36, 0.85));
+            --color-acento: #fbbf24;
+            --color-boton-texto: #1d1d1f;
+            --tarjeta-bg: rgba(55, 40, 10, var(--opacidad-tarjeta));
+            --header-bg: rgba(55, 40, 10, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(251, 191, 36, 0.4);
+            --btn-inicio-bg: rgba(251, 191, 36, 0.25);
+            --acento-glow: rgba(251, 191, 36, 0.4);
+        }
+        body.dark-mode.tema-amarillo {
+            --color-boton: linear-gradient(135deg, rgba(251, 191, 36, 0.9), rgba(252, 211, 77, 0.9));
+            --color-acento: #fcd34d;
+            --color-boton-texto: #0a0a0c;
+            --tarjeta-bg: rgba(30, 22, 5, var(--opacidad-tarjeta));
+            --header-bg: rgba(30, 22, 5, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(252, 211, 77, 0.3);
+            --btn-inicio-bg: rgba(252, 211, 77, 0.15);
+            --acento-glow: rgba(252, 211, 77, 0.5);
+        }
+
+        body.tema-naranja {
+            --color-boton: linear-gradient(135deg, rgba(234, 88, 12, 0.85), rgba(249, 115, 22, 0.85));
+            --color-acento: #f97316;
+            --color-boton-texto: #ffffff;
+            --tarjeta-bg: rgba(55, 25, 10, var(--opacidad-tarjeta));
+            --header-bg: rgba(55, 25, 10, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(249, 115, 22, 0.4);
+            --btn-inicio-bg: rgba(249, 115, 22, 0.25);
+            --acento-glow: rgba(249, 115, 22, 0.4);
+        }
+        body.dark-mode.tema-naranja {
+            --color-boton: linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(253, 186, 116, 0.9));
+            --color-acento: #fdba74;
+            --color-boton-texto: #0a0a0c;
+            --tarjeta-bg: rgba(30, 12, 5, var(--opacidad-tarjeta));
+            --header-bg: rgba(30, 12, 5, var(--opacidad-tarjeta));
+            --tarjeta-borde: rgba(253, 186, 116, 0.3);
+            --btn-inicio-bg: rgba(253, 186, 116, 0.15);
+            --acento-glow: rgba(253, 186, 116, 0.5);
+        }
+
         * { 
             margin: 0; 
             padding: 0; 
@@ -168,9 +232,9 @@
             -webkit-backdrop-filter: blur(20px);
             border-right: 1px solid var(--tarjeta-borde);
             box-shadow: 10px 0 30px rgba(0,0,0,0.3);
-            z-index: 200; padding: 35px 25px;
+            z-index: 200; padding: 35px 22px;
             transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.4s ease, border-color 0.4s ease;
-            display: flex; flex-direction: column; gap: 18px;
+            display: flex; flex-direction: column; gap: 16px;
             overflow-y: auto;
         }
 
@@ -190,7 +254,7 @@
         .btn-cerrar-sidebar:hover { opacity: 1; }
 
         .control-group { display: flex; flex-direction: column; gap: 8px; }
-        .control-group label { font-size: 0.9rem; font-weight: 600; display: flex; justify-content: space-between; }
+        .control-group label { font-size: 0.88rem; font-weight: 600; display: flex; justify-content: space-between; }
         .slider-transparencia { width: 100%; accent-color: var(--color-acento); cursor: pointer; }
 
         .select-pack-fondos {
@@ -204,24 +268,33 @@
             color: #ffffff;
         }
 
-        .temas-container {
-            display: flex; gap: 10px; justify-content: space-between; margin-top: 5px;
+        /* BARRA SLIDER HORIZONTAL DE TEMAS DE COLOR */
+        .temas-scroll-container {
+            display: flex; gap: 10px; overflow-x: auto; padding: 6px 4px 10px 4px;
+            scroll-behavior: smooth; border-radius: 16px;
+            border: 1px solid var(--tarjeta-borde); background: var(--btn-inicio-bg);
         }
+        .temas-scroll-container::-webkit-scrollbar { height: 5px; }
+        .temas-scroll-container::-webkit-scrollbar-thumb { background: var(--tarjeta-borde); border-radius: 10px; }
+
         .btn-tema {
-            width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--tarjeta-borde);
-            cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+            min-width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--tarjeta-borde);
+            cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; flex-shrink: 0;
         }
-        .btn-tema:hover { transform: scale(1.1); box-shadow: 0 4px 10px var(--acento-glow); }
+        .btn-tema:hover { transform: scale(1.12); box-shadow: 0 4px 10px var(--acento-glow); }
         
         .tema-default { background: #1d1d1f; }
         .tema-azul { background: linear-gradient(135deg, #0a2540, #2997ff); }
         .tema-morado { background: linear-gradient(135deg, #3c096c, #9d4edd); }
         .tema-verde { background: linear-gradient(135deg, #064e3b, #34d399); }
         .tema-gamer { background: linear-gradient(135deg, #900020, #ff3366); }
+        .tema-rosa { background: linear-gradient(135deg, #d81b60, #ff4081); }
+        .tema-amarillo { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .tema-naranja { background: linear-gradient(135deg, #ea580c, #f97316); }
 
         .switch-container {
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.9rem; font-weight: 600;
+            font-size: 0.88rem; font-weight: 600;
         }
         .switch { position: relative; display: inline-block; width: 46px; height: 24px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -323,31 +396,56 @@
             margin: 0 auto 20px; padding: 30px 25px; text-align: center; 
             background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px); border: 1px solid var(--tarjeta-borde);
-            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 650px; width: 100%;
+            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 750px; width: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
         }
         .hero h1 { font-size: 2.2rem; color: var(--color-texto); margin-bottom: 8px; font-weight: 800; letter-spacing: -1px; }
         .hero p { font-size: 1rem; opacity: 0.9; font-weight: 500; }
 
+        .ceo-note {
+            margin-top: 15px; padding: 12px 18px; border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08); border: 1px dashed var(--tarjeta-borde);
+            font-size: 0.88rem; font-style: italic; line-height: 1.4;
+        }
+
         .interactive-section { padding: 0 2% 20px; text-align: center; }
+
+        /* GRID PRINCIPAL DE TARJETAS */
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
 
         .card-container { 
             background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); max-width: 480px; margin: 0 auto; 
-            padding: 30px 22px; border-radius: 24px; box-shadow: var(--sombra-flotante);
-            border: 1px solid var(--tarjeta-borde); width: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease, -webkit-mask-image 0.7s cubic-bezier(0.4, 0, 0.2, 1), mask-image 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-backdrop-filter: blur(15px); padding: 30px 22px; border-radius: 24px;
+            box-shadow: var(--sombra-flotante); border: 1px solid var(--tarjeta-borde);
+            width: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
             
             -webkit-mask-image: var(--tarjeta-mask);
             mask-image: var(--tarjeta-mask);
         }
+        .card-container:hover { transform: translateY(-4px); box-shadow: 0 20px 40px var(--acento-glow); }
         .card-container h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
 
         .quote-box {
-            font-size: 1.05rem; font-weight: 600; min-height: 65px;
+            font-size: 1.05rem; font-weight: 600; min-height: 75px;
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 18px; line-height: 1.4; transition: opacity 0.25s ease;
         }
+
+        .card-image-box {
+            width: 100%; height: 160px; border-radius: 16px; overflow: hidden;
+            margin-bottom: 15px; border: 1px solid var(--tarjeta-borde);
+        }
+        .card-image-box img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
+        }
+        .card-container:hover .card-image-box img { transform: scale(1.05); }
 
         .btn-action { 
             padding: 11px 22px; font-size: 0.92rem; font-weight: 600; 
@@ -376,7 +474,7 @@
 
         .modal-content {
             background-color: var(--tarjeta-bg); border: 1px solid var(--tarjeta-borde);
-            box-shadow: var(--sombra-flotante); border-radius: 24px; width: 100%; max-width: 500px;
+            box-shadow: var(--sombra-flotante); border-radius: 24px; width: 100%; max-width: 520px;
             padding: 25px 20px; transform: scale(0.85) translateY(20px); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative; text-align: left; max-height: 85vh; overflow-y: auto;
         }
@@ -451,8 +549,9 @@
             }
             .hero h1 { font-size: 1.8rem; }
             .hero { padding: 22px 18px; border-radius: 20px; }
-            .card-container { padding: 25px 18px; border-radius: 20px; }
+            .card-container { padding: 22px 16px; border-radius: 20px; }
             .sidebar { width: 280px; left: -290px; padding: 25px 18px; }
+            .main-content-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -480,17 +579,29 @@
                 <option value="naturaleza">🌲 Naturaleza Dinámica</option>
                 <option value="espacio">🪐 Espacio & Galaxia</option>
                 <option value="marmol">🖤 Mármol Oscuro & Texturas</option>
+                <option value="cyberpunk">⚡ Futurista & Cyberpunk</option>
+            </select>
+        </div>
+
+        <!-- SELECTOR DE FONDO ESPECÍFICO DE LA COLECCIÓN -->
+        <div class="control-group">
+            <label>Fondo Específico 🎨</label>
+            <select id="select-fondo-individual" class="select-pack-fondos">
+                <!-- Se llena dinámicamente con JS -->
             </select>
         </div>
 
         <div class="control-group">
-            <label>Tema de Color</label>
-            <div class="temas-container">
+            <label>Tema de Color (Desliza ➔)</label>
+            <div class="temas-scroll-container">
                 <button class="btn-tema tema-default" onclick="cambiarTema('')" title="Minimalista"></button>
-                <button class="btn-tema tema-azul" onclick="cambiarTema('tema-azul')" title="Azul Océano Profundo"></button>
+                <button class="btn-tema tema-azul" onclick="cambiarTema('tema-azul')" title="Azul Océano"></button>
                 <button class="btn-tema tema-morado" onclick="cambiarTema('tema-morado')" title="Morado Galáctico"></button>
                 <button class="btn-tema tema-verde" onclick="cambiarTema('tema-verde')" title="Verde Esmeralda"></button>
-                <button class="btn-tema tema-gamer" onclick="cambiarTema('tema-gamer')" title="Modo Gamer (Opera GX)"></button>
+                <button class="btn-tema tema-gamer" onclick="cambiarTema('tema-gamer')" title="Modo Gamer"></button>
+                <button class="btn-tema tema-rosa" onclick="cambiarTema('tema-rosa')" title="Rosa Neón"></button>
+                <button class="btn-tema tema-amarillo" onclick="cambiarTema('tema-amarillo')" title="Amarillo Cálido"></button>
+                <button class="btn-tema tema-naranja" onclick="cambiarTema('tema-naranja')" title="Naranja Vibrante"></button>
             </div>
         </div>
         
@@ -529,7 +640,7 @@
         </div>
     </aside>
 
-    <!-- MODAL DE NOVEDADES (VERSIÓN 1.1) -->
+    <!-- MODAL DE NOVEDADES (HISTORIAL CON V1.3) -->
     <div id="modal-novedades" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -537,24 +648,32 @@
                 <button id="btn-cerrar-novedades" class="btn-cerrar-modal">✕</button>
             </div>
             <div class="modal-body">
-                <span class="version-badge">📌 Versión 1.1 (Actualización Reciente)</span>
-                
-                <p>¡Hemos actualizado la plataforma! En esta <strong>Versión 1.1</strong> incorporamos soporte optimizado y adaptación fluida para celulares (smartphones), mejorando el rendimiento para que los efectos corran sin lag en cualquier dispositivo móvil.</p>
+                <span class="version-badge">📌 Versión 1.3 (Reciente)</span>
+                <p>• Selector de Fondos Individuales dentro de cada paquete.<br>
+                • Nuevo paquete de fondos <strong>⚡ Futurista & Cyberpunk</strong>.<br>
+                • Nuevos temas de color: Rosa Neón, Amarillo Cálido y Naranja Vibrante con barra deslizable.<br>
+                • Nota del CEO e indagación en educación financiera.</p>
 
-                <span class="version-badge" style="margin-top: 5px;">📌 Versión 1.0 (Lanzamiento Original)</span>
-                <p>Plataforma interactiva desarrollada para las actividades del área de <strong>Educación para el Trabajo (EPT)</strong> del colegio <strong>Paola Frassinetti Fe y Alegría 45</strong>.</p>
+                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.2 (Actualización)</span>
+                <p>Rediseño conceptual hacia la Conciencia Económica y Consumo Responsable. Integración de tarjetas interactivas.</p>
+
+                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.1</span>
+                <p>Soporte adaptable y optimización fluida para celulares (smartphones).</p>
+
+                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.0</span>
+                <p>Plataforma para EPT del colegio Paola Frassinetti Fe y Alegría 45.</p>
 
                 <p><strong>👥 Equipo de Emprendedores:</strong></p>
                 <ul class="integrantes-list">
                     <li>👨‍💻 Luis Adrian Cueva Yana</li>
-                    <li>👨‍💻 Josué Manuel Vargas Inga</li>
+                    <li>👨‍💻 Josué Manuel Vargas Inga (CEO)</li>
                     <li>👨‍💻 Juan Jose Massi Pinto</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE CONTÁCTANOS (CONECTADO A PAPILUCHO308@GMAIL.COM) -->
+    <!-- MODAL DE CONTÁCTANOS -->
     <div id="modal-contacto" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -576,7 +695,7 @@
 
                     <div class="form-group">
                         <label for="mensaje-contacto">Mensaje</label>
-                        <textarea id="mensaje-contacto" class="form-textarea" placeholder="Escribe tu mensaje aquí..."></textarea>
+                        <textarea id="mensaje-contacto" class="form-textarea" placeholder="Escribe tu mensaje sobre finanzas o consultas..."></textarea>
                         <span id="error-contacto-mensaje" class="error-msg">⚠️ Escriba un mensaje.</span>
                     </div>
 
@@ -602,16 +721,44 @@
     <main>
         <section class="hero">
             <h1>Mundo Alegría</h1>
-            <p>Un espacio donde la naturaleza y el diseño se encuentran.</p>
+            <p>Promoviendo la conciencia y responsabilidad en nuestra economía personal.</p>
+            <div class="ceo-note">
+                💡 <strong>Nota del CEO (Josué Manuel):</strong> "Actualmente estamos indagando a fondo sobre temas financieros y económicos clave para ofrecer recomendaciones cada vez más precisas y transformadoras."
+            </div>
         </section>
 
         <section class="interactive-section">
-            <div class="card-container">
-                <h2>Frase del Día ✨</h2>
-                <div class="quote-box" id="frase-texto">
-                    "Diseñar no es solo cómo se ve, sino cómo funciona."
+            <div class="main-content-grid">
+                <!-- Tarjeta 1: Consejos de Conciencia Económica -->
+                <div class="card-container">
+                    <h2>Consejo Económico 💡</h2>
+                    <div class="quote-box" id="frase-texto">
+                        "El uso responsable del dinero hoy construye la tranquilidad de tu mañana."
+                    </div>
+                    <button id="btn-frase" class="btn-action">Siguiente Consejo 🔄</button>
                 </div>
-                <button id="btn-frase" class="btn-action">Nueva frase</button>
+
+                <!-- Tarjeta 2: Consumo Responsable -->
+                <div class="card-container">
+                    <h2>Consumo Responsable 📊</h2>
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Educación Financiera">
+                    </div>
+                    <p style="font-size: 0.88rem; opacity: 0.95; line-height: 1.4;">
+                        Reflexionar sobre nuestras decisiones de gasto evita consumos impulsivos y fortalece la economía de nuestro hogar.
+                    </p>
+                </div>
+
+                <!-- Tarjeta 3: Principios Financieros -->
+                <div class="card-container">
+                    <h2>Educación & Futuro 📈</h2>
+                    <div class="card-image-box">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80" alt="Planificación">
+                    </div>
+                    <p style="font-size: 0.88rem; opacity: 0.95; line-height: 1.4;">
+                        Aprender a diferenciar necesidades de deseos nos encamina hacia una estabilidad económica duradera.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
@@ -642,15 +789,22 @@
                 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80'
+            ],
+            cyberpunk: [
+                'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80'
             ]
         };
 
-        const frases = [
-            '"Diseñar no es solo cómo se ve, sino cómo funciona."',
-            '"La simplicidad es la máxima sofisticación."',
-            '"Haz de cada detalle algo memorable."',
-            '"Menos elementos, más impacto visual."',
-            '"La creatividad es la inteligencia divirtiéndose."'
+        const consejosEconomicos = [
+            '"El uso responsable del dinero hoy construye la tranquilidad de tu mañana."',
+            '"Evita las compras impulsivas: antes de adquirir algo, pregúntate si es un deseo o una necesidad."',
+            '"Identifica y controla los gastos hormiga; pequeños consumos diarios suman grandes montos al mes."',
+            '"Planificar un presupuesto personal es la clave para mantener el equilibrio de tu economía."',
+            '"Invertir en conocimiento sobre finanzas personales es el activo que más rentabilidad genera."'
         ];
 
         const bgCurrent = document.getElementById('bg-current');
@@ -659,6 +813,7 @@
         const fraseTexto = document.getElementById('frase-texto');
         const btnOscuro = document.getElementById('btn-oscuro');
         const selectPackFondos = document.getElementById('select-pack-fondos');
+        const selectFondoIndividual = document.getElementById('select-fondo-individual');
         const footerCreditos = document.getElementById('footer-creditos');
 
         let packActual = 'naturaleza';
@@ -667,45 +822,64 @@
         let temaActual = '';
 
         bgCurrent.style.backgroundImage = `url('${fotosFondo[0]}')`;
-        fraseTexto.textContent = frases[0];
+        fraseTexto.textContent = consejosEconomicos[0];
 
+        // POBLAR SELECTOR DE FONDO INDIVIDUAL
+        function actualizarOpcionesIndividuales() {
+            selectFondoIndividual.innerHTML = '';
+            fotosFondo.forEach((_, idx) => {
+                const opt = document.createElement('option');
+                opt.value = idx;
+                opt.textContent = `Imagen ${idx + 1}`;
+                selectFondoIndividual.appendChild(opt);
+            });
+            selectFondoIndividual.value = indiceActual;
+        }
+
+        actualizarOpcionesIndividuales();
+
+        // CAMBIO DE PACK COMPLETO
         selectPackFondos.addEventListener('change', (e) => {
             packActual = e.target.value;
             fotosFondo = coleccionesFondos[packActual];
             indiceActual = 0;
+            actualizarOpcionesIndividuales();
 
-            bgNext.style.backgroundImage = `url('${fotosFondo[0]}')`;
-            bgNext.style.opacity = '1';
-
-            setTimeout(() => {
-                bgCurrent.style.backgroundImage = `url('${fotosFondo[0]}')`;
-                bgNext.style.opacity = '0';
-            }, 600);
+            aplicarFondo(fotosFondo[0]);
 
             const nombresPacks = {
                 naturaleza: 'Naturaleza Dinámica',
                 espacio: 'Espacio & Galaxia',
-                marmol: 'Mármol Oscuro & Texturas'
+                marmol: 'Mármol Oscuro & Texturas',
+                cyberpunk: 'Futurista & Cyberpunk'
             };
             footerCreditos.innerHTML = `&copy; 2026 Mundo Alegría • Edición ${nombresPacks[packActual]}`;
         });
 
-        btnFrase.addEventListener('click', () => {
-            indiceActual = (indiceActual + 1) % fotosFondo.length;
+        // CAMBIO DE FONDO INDIVIDUAL ESPECÍFICO
+        selectFondoIndividual.addEventListener('change', (e) => {
+            indiceActual = parseInt(e.target.value);
+            aplicarFondo(fotosFondo[indiceActual]);
+        });
 
-            bgNext.style.backgroundImage = `url('${fotosFondo[indiceActual]}')`;
+        function aplicarFondo(url) {
+            bgNext.style.backgroundImage = `url('${url}')`;
             bgNext.style.opacity = '1';
+
+            setTimeout(() => {
+                bgCurrent.style.backgroundImage = `url('${url}')`;
+                bgNext.style.opacity = '0';
+            }, 600);
+        }
+
+        btnFrase.addEventListener('click', () => {
+            indiceActual = (indiceActual + 1) % consejosEconomicos.length;
 
             fraseTexto.style.opacity = '0';
             setTimeout(() => {
-                fraseTexto.textContent = frases[indiceActual];
+                fraseTexto.textContent = consejosEconomicos[indiceActual];
                 fraseTexto.style.opacity = '1';
             }, 200);
-
-            setTimeout(() => {
-                bgCurrent.style.backgroundImage = `url('${fotosFondo[indiceActual]}')`;
-                bgNext.style.opacity = '0';
-            }, 800);
         });
 
         btnOscuro.addEventListener('click', () => { 
@@ -728,7 +902,7 @@
             if (e.target === modalContacto) modalContacto.classList.remove('active');
         });
 
-        // ENVÍO DE CORREO AUTOMÁTICO A PAPILUCHO308@GMAIL.COM
+        // ENVÍO DE CORREO AUTOMÁTICO
         const formContacto = document.getElementById('form-contacto');
         const nombreContacto = document.getElementById('nombre-contacto');
         const mensajeContacto = document.getElementById('mensaje-contacto');
@@ -760,9 +934,8 @@
             if (valido) {
                 const nombre = encodeURIComponent(nombreContacto.value.trim());
                 const mensaje = encodeURIComponent(mensajeContacto.value.trim());
-                const asunto = encodeURIComponent("Mensaje desde la web Mundo Alegría de EPT");
+                const asunto = encodeURIComponent("Consulta desde la web Mundo Alegría (EPT)");
                 
-                // Abre el cliente de correo del usuario directo a tu Gmail con el mensaje escrito
                 window.location.href = `mailto:papilucho308@gmail.com?subject=${asunto}&body=Hola, mi nombre es ${nombre}.%0D%0A%0D%0AMensaje:%0D%0A${mensaje}`;
                 
                 formContacto.reset();
@@ -851,7 +1024,7 @@
         });
 
         function cambiarTema(claseTema) {
-            document.body.classList.remove('tema-azul', 'tema-morado', 'tema-verde', 'tema-gamer');
+            document.body.classList.remove('tema-azul', 'tema-morado', 'tema-verde', 'tema-gamer', 'tema-rosa', 'tema-amarillo', 'tema-naranja');
             if (claseTema) {
                 document.body.classList.add(claseTema);
             }
@@ -862,6 +1035,7 @@
             const configuracion = {
                 tema: temaActual,
                 packFondos: selectPackFondos.value,
+                fondoIndice: selectFondoIndividual.value,
                 transparencia: inputTransparencia.value,
                 transparenciaActiva: toggleTransparencia.checked,
                 efecto3D: toggle3D.checked,
@@ -907,6 +1081,10 @@
                     selectPackFondos.value = config.packFondos;
                     selectPackFondos.dispatchEvent(new Event('change'));
                 }
+                if (config.fondoIndice) {
+                    selectFondoIndividual.value = config.fondoIndice;
+                    selectFondoIndividual.dispatchEvent(new Event('change'));
+                }
                 if (config.transparencia) {
                     inputTransparencia.value = config.transparencia;
                     valTransparencia.textContent = `${config.transparencia}%`;
@@ -923,7 +1101,7 @@
                     inputTransparencia.disabled = true;
                 }
                 toggle3D.checked = config.efecto3D;
-                if (!config.efecode3D) document.body.classList.remove('efecto-3d-activo');
+                if (!config.efecto3D) document.body.classList.remove('efecto-3d-activo');
 
                 toggleParallax.checked = config.parallax;
                 parallaxActivo = config.parallax;
