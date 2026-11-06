@@ -21,6 +21,7 @@
             
             --capa-oscura: rgba(0, 0, 0, 0);
             --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 100%, rgba(0,0,0,1) 100%);
+            --duracion-anim: 0.4s;
         }
 
         body.dark-mode {
@@ -35,6 +36,20 @@
             --color-acento: #ffffff;
             --acento-glow: rgba(255, 255, 255, 0.15);
             --capa-oscura: rgba(0, 0, 0, 0.45);
+        }
+
+        /* CUANDO LAS ANIMACIONES ESTÁN DESACTIVADAS */
+        body.sin-animaciones *,
+        body.sin-animaciones .bg-layer {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        /* CLASE PARA ATENUAR (APAGAR) CONTROLES BLOQUEADOS */
+        .control-apagado {
+            opacity: 0.35;
+            filter: grayscale(80%);
+            pointer-events: none;
         }
 
         /* TEMAS DE COLOR */
@@ -122,7 +137,6 @@
             --acento-glow: rgba(255, 51, 102, 0.5);
         }
 
-        /* NUEVOS TEMAS: ROSA, AMARILLO Y NARANJA */
         body.tema-rosa {
             --color-boton: linear-gradient(135deg, rgba(216, 27, 96, 0.85), rgba(255, 64, 129, 0.85));
             --color-acento: #ff4081;
@@ -196,7 +210,7 @@
         body { 
             background-color: #0b0c10;
             color: var(--color-texto); 
-            transition: color 0.4s ease; 
+            transition: color var(--duracion-anim) ease; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -208,7 +222,7 @@
             position: fixed;
             top: -5%; left: -5%; width: 110%; height: 110%;
             background-size: cover; background-position: center;
-            z-index: -3; transition: opacity 0.8s ease-in-out, transform 0.15s ease-out;
+            z-index: -3; transition: opacity var(--duracion-anim) ease-in-out, transform 0.15s ease-out;
             will-change: transform;
         }
 
@@ -219,7 +233,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--capa-oscura);
-            z-index: -2; transition: background-color 0.4s ease;
+            z-index: -2; transition: background-color var(--duracion-anim) ease;
             pointer-events: none;
         }
 
@@ -233,7 +247,7 @@
             border-right: 1px solid var(--tarjeta-borde);
             box-shadow: 10px 0 30px rgba(0,0,0,0.3);
             z-index: 200; padding: 35px 22px;
-            transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.4s ease, border-color 0.4s ease;
+            transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background-color var(--duracion-anim) ease, border-color var(--duracion-anim) ease;
             display: flex; flex-direction: column; gap: 16px;
             overflow-y: auto;
         }
@@ -253,7 +267,7 @@
         }
         .btn-cerrar-sidebar:hover { opacity: 1; }
 
-        .control-group { display: flex; flex-direction: column; gap: 8px; }
+        .control-group { display: flex; flex-direction: column; gap: 8px; transition: opacity 0.3s ease, filter 0.3s ease; }
         .control-group label { font-size: 0.88rem; font-weight: 600; display: flex; justify-content: space-between; }
         .slider-transparencia { width: 100%; accent-color: var(--color-acento); cursor: pointer; }
 
@@ -268,7 +282,6 @@
             color: #ffffff;
         }
 
-        /* BARRA SLIDER HORIZONTAL DE TEMAS DE COLOR */
         .temas-scroll-container {
             display: flex; gap: 10px; overflow-x: auto; padding: 6px 4px 10px 4px;
             scroll-behavior: smooth; border-radius: 16px;
@@ -331,8 +344,17 @@
         .btn-sidebar-reset {
             background-color: transparent; color: var(--color-texto);
         }
-        .btn-sidebar-save:hover, .btn-sidebar-reset:hover {
-            transform: translateY(-2px); opacity: 0.9;
+
+        /* ANIMACIÓN DE REBOTE ÉPICA */
+        @keyframes reboteEpico {
+            0% { transform: scale(1); }
+            30% { transform: scale(0.88); }
+            60% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        body:not(.sin-animaciones) .animar-rebote {
+            animation: reboteEpico var(--duracion-anim) cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         /* BARRA SUPERIOR */
@@ -341,7 +363,7 @@
             backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
             border: 1px solid var(--tarjeta-borde); border-radius: 20px;
             box-shadow: var(--sombra-flotante); position: sticky; top: 15px; z-index: 100;
-            transition: all 0.4s ease;
+            transition: all var(--duracion-anim) ease;
         }
 
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 4%; }
@@ -396,17 +418,18 @@
             margin: 0 auto 20px; padding: 30px 25px; text-align: center; 
             background-color: var(--tarjeta-bg); backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px); border: 1px solid var(--tarjeta-borde);
-            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 750px; width: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+            border-radius: 24px; box-shadow: var(--sombra-flotante); max-width: 780px; width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--duracion-anim) ease, border-color var(--duracion-anim) ease;
         }
         .hero h1 { font-size: 2.2rem; color: var(--color-texto); margin-bottom: 8px; font-weight: 800; letter-spacing: -1px; }
         .hero p { font-size: 1rem; opacity: 0.9; font-weight: 500; }
 
         .ceo-note {
-            margin-top: 15px; padding: 12px 18px; border-radius: 16px;
+            margin-top: 15px; padding: 14px 18px; border-radius: 16px;
             background: rgba(255, 255, 255, 0.08); border: 1px dashed var(--tarjeta-borde);
-            font-size: 0.88rem; font-style: italic; line-height: 1.4;
+            font-size: 0.9rem; line-height: 1.5; text-align: left;
         }
+        .ceo-note strong { font-style: normal; display: block; margin-bottom: 4px; font-weight: 700; }
 
         .interactive-section { padding: 0 2% 20px; text-align: center; }
 
@@ -424,7 +447,7 @@
             -webkit-backdrop-filter: blur(15px); padding: 30px 22px; border-radius: 24px;
             box-shadow: var(--sombra-flotante); border: 1px solid var(--tarjeta-borde);
             width: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--duracion-anim) ease, border-color var(--duracion-anim) ease;
             
             -webkit-mask-image: var(--tarjeta-mask);
             mask-image: var(--tarjeta-mask);
@@ -459,7 +482,7 @@
             position: relative; z-index: 1; margin: 15px 4%; text-align: center; 
             padding: 12px; font-size: 0.8rem; background-color: var(--header-bg); 
             backdrop-filter: blur(10px); border: 1px solid var(--tarjeta-borde);
-            border-radius: 18px; box-shadow: var(--sombra-flotante); transition: all 0.4s ease;
+            border-radius: 18px; box-shadow: var(--sombra-flotante); transition: all var(--duracion-anim) ease;
         }
 
         /* MODALES FLOTANTES */
@@ -578,16 +601,15 @@
             <select id="select-pack-fondos" class="select-pack-fondos">
                 <option value="naturaleza">🌲 Naturaleza Dinámica</option>
                 <option value="espacio">🪐 Espacio & Galaxia</option>
-                <option value="marmol">🖤 Mármol Oscuro & Texturas</option>
-                <option value="cyberpunk">⚡ Futurista & Cyberpunk</option>
+                <option value="marmol">🖤 Texturas</option>
+                <option value="futurista">⚡ Futurista & Tecnología</option>
             </select>
         </div>
 
-        <!-- SELECTOR DE FONDO ESPECÍFICO DE LA COLECCIÓN -->
         <div class="control-group">
             <label>Fondo Específico 🎨</label>
             <select id="select-fondo-individual" class="select-pack-fondos">
-                <!-- Se llena dinámicamente con JS -->
+                <!-- Se llena dinámicamente -->
             </select>
         </div>
 
@@ -605,7 +627,8 @@
             </div>
         </div>
         
-        <div class="control-group">
+        <!-- CONTROL TRANSPARENCIA -->
+        <div class="control-group" id="grupo-transparencia">
             <label>Nivel de Transparencia <span id="val-transparencia">65%</span></label>
             <input type="range" id="input-transparencia" class="slider-transparencia" min="10" max="100" value="65">
         </div>
@@ -614,6 +637,14 @@
             <span>Efecto Transparencia</span>
             <label class="switch">
                 <input type="checkbox" id="toggle-transparencia" checked>
+                <span class="slider-switch"></span>
+            </label>
+        </div>
+
+        <div class="switch-container">
+            <span>Desactivar Animaciones</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-animaciones">
                 <span class="slider-switch"></span>
             </label>
         </div>
@@ -640,7 +671,7 @@
         </div>
     </aside>
 
-    <!-- MODAL DE NOVEDADES (HISTORIAL CON V1.3) -->
+    <!-- MODAL DE NOVEDADES (HISTORIAL NORMAL v1.0 A v1.3) -->
     <div id="modal-novedades" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -648,22 +679,22 @@
                 <button id="btn-cerrar-novedades" class="btn-cerrar-modal">✕</button>
             </div>
             <div class="modal-body">
-                <span class="version-badge">📌 Versión 1.3 (Reciente)</span>
-                <p>• Selector de Fondos Individuales dentro de cada paquete.<br>
-                • Nuevo paquete de fondos <strong>⚡ Futurista & Cyberpunk</strong>.<br>
-                • Nuevos temas de color: Rosa Neón, Amarillo Cálido y Naranja Vibrante con barra deslizable.<br>
-                • Nota del CEO e indagación en educación financiera.</p>
+                <span class="version-badge">📌 Versión 1.3</span>
+                <p>• Definición formal del objetivo institucional del proyecto enfocado en la conciencia económica.<br>
+                • Colección de Texturas elegantes y fondos futuristas.<br>
+                • Control independiente de animación, transparencia y efecto Parallax.<br>
+                • Optimización general del rendimiento y estabilidad de la interfaz.</p>
 
-                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.2 (Actualización)</span>
-                <p>Rediseño conceptual hacia la Conciencia Económica y Consumo Responsable. Integración de tarjetas interactivas.</p>
+                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.2</span>
+                <p>Implementación de tarjetas interactivas de consejos financieros y temas de color dinámicos.</p>
 
                 <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.1</span>
-                <p>Soporte adaptable y optimización fluida para celulares (smartphones).</p>
+                <p>Soporte adaptable y optimización fluida para smartphones y celulares.</p>
 
                 <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.0</span>
-                <p>Plataforma para EPT del colegio Paola Frassinetti Fe y Alegría 45.</p>
+                <p>Lanzamiento inicial para el proyecto EPT del colegio Paola Frassinetti Fe y Alegría 45.</p>
 
-                <p><strong>👥 Equipo de Emprendedores:</strong></p>
+                <p><strong>👥 Equipo Directivo:</strong></p>
                 <ul class="integrantes-list">
                     <li>👨‍💻 Luis Adrian Cueva Yana</li>
                     <li>👨‍💻 Josué Manuel Vargas Inga (CEO)</li>
@@ -723,7 +754,8 @@
             <h1>Mundo Alegría</h1>
             <p>Promoviendo la conciencia y responsabilidad en nuestra economía personal.</p>
             <div class="ceo-note">
-                💡 <strong>Nota del CEO (Josué Manuel):</strong> "Actualmente estamos indagando a fondo sobre temas financieros y económicos clave para ofrecer recomendaciones cada vez más precisas y transformadoras."
+                <strong>🎯 Objetivo del Proyecto:</strong>
+                "Lograr que las personas reflexionen acerca de su economía mediante una plataforma web que apoye, a través de información estructurada y recomendaciones prácticas, el manejo eficiente del uso de nuestro dinero."
             </div>
         </section>
 
@@ -784,18 +816,18 @@
                 'https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=1920&q=80'
             ],
             marmol: [
+                'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1920&q=80',
-                'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80',
-                'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80'
+                'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1920&q=80'
             ],
-            cyberpunk: [
-                'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1920&q=80',
+            futurista: [
                 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1920&q=80',
+                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80',
                 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1920&q=80',
-                'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1920&q=80'
+                'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1920&q=80'
             ]
         };
 
@@ -815,6 +847,11 @@
         const selectPackFondos = document.getElementById('select-pack-fondos');
         const selectFondoIndividual = document.getElementById('select-fondo-individual');
         const footerCreditos = document.getElementById('footer-creditos');
+        const toggleAnimaciones = document.getElementById('toggle-animaciones');
+        const toggleParallax = document.getElementById('toggle-parallax');
+        const grupoTransparencia = document.getElementById('grupo-transparencia');
+        const inputTransparencia = document.getElementById('input-transparencia');
+        const toggleTransparencia = document.getElementById('toggle-transparencia');
 
         let packActual = 'naturaleza';
         let fotosFondo = coleccionesFondos[packActual];
@@ -824,7 +861,41 @@
         bgCurrent.style.backgroundImage = `url('${fotosFondo[0]}')`;
         fraseTexto.textContent = consejosEconomicos[0];
 
-        // POBLAR SELECTOR DE FONDO INDIVIDUAL
+        // APAGADO EXCLUSIVO DE LA BARRA DE TRANSPARENCIA
+        toggleTransparencia.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
+                inputTransparencia.disabled = false;
+                grupoTransparencia.classList.remove('control-apagado');
+            } else {
+                document.documentElement.style.setProperty('--opacidad-tarjeta', '1.0');
+                inputTransparencia.disabled = true;
+                grupoTransparencia.classList.add('control-apagado');
+            }
+        });
+
+        // DESACTIVAR ANIMACIONES DE BOTONES Y APAGAR PARALLAX AL MISMO TIEMPO
+        toggleAnimaciones.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('sin-animaciones');
+                // Al apagar animaciones también se desactiva el parallax automáticamente
+                toggleParallax.checked = false;
+                toggleParallax.dispatchEvent(new Event('change'));
+            } else {
+                document.body.classList.remove('sin-animaciones');
+            }
+        });
+
+        // ANIMACIÓN DE REBOTE AL CLICKEAR
+        document.querySelectorAll('.btn-action, .btn-nav-contacto, .btn-nav-novedades, .btn-sidebar-save, .btn-sidebar-reset, .btn-sidebar-oscuro').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (document.body.classList.contains('sin-animaciones')) return;
+                this.classList.remove('animar-rebote');
+                void this.offsetWidth;
+                this.classList.add('animar-rebote');
+            });
+        });
+
         function actualizarOpcionesIndividuales() {
             selectFondoIndividual.innerHTML = '';
             fotosFondo.forEach((_, idx) => {
@@ -838,7 +909,6 @@
 
         actualizarOpcionesIndividuales();
 
-        // CAMBIO DE PACK COMPLETO
         selectPackFondos.addEventListener('change', (e) => {
             packActual = e.target.value;
             fotosFondo = coleccionesFondos[packActual];
@@ -850,30 +920,38 @@
             const nombresPacks = {
                 naturaleza: 'Naturaleza Dinámica',
                 espacio: 'Espacio & Galaxia',
-                marmol: 'Mármol Oscuro & Texturas',
-                cyberpunk: 'Futurista & Cyberpunk'
+                marmol: 'Texturas',
+                futurista: 'Futurista & Tecnología'
             };
             footerCreditos.innerHTML = `&copy; 2026 Mundo Alegría • Edición ${nombresPacks[packActual]}`;
         });
 
-        // CAMBIO DE FONDO INDIVIDUAL ESPECÍFICO
         selectFondoIndividual.addEventListener('change', (e) => {
             indiceActual = parseInt(e.target.value);
             aplicarFondo(fotosFondo[indiceActual]);
         });
 
         function aplicarFondo(url) {
+            if (document.body.classList.contains('sin-animaciones')) {
+                bgCurrent.style.backgroundImage = `url('${url}')`;
+                return;
+            }
             bgNext.style.backgroundImage = `url('${url}')`;
             bgNext.style.opacity = '1';
 
             setTimeout(() => {
                 bgCurrent.style.backgroundImage = `url('${url}')`;
                 bgNext.style.opacity = '0';
-            }, 600);
+            }, 400);
         }
 
         btnFrase.addEventListener('click', () => {
             indiceActual = (indiceActual + 1) % consejosEconomicos.length;
+
+            if (document.body.classList.contains('sin-animaciones')) {
+                fraseTexto.textContent = consejosEconomicos[indiceActual];
+                return;
+            }
 
             fraseTexto.style.opacity = '0';
             setTimeout(() => {
@@ -947,11 +1025,8 @@
         const logoBtn = document.getElementById('logo-btn');
         const sidebar = document.getElementById('sidebar');
         const btnCerrarSidebar = document.getElementById('btn-cerrar-sidebar');
-        const inputTransparencia = document.getElementById('input-transparencia');
         const valTransparencia = document.getElementById('val-transparencia');
-        const toggleTransparencia = document.getElementById('toggle-transparencia');
         const toggle3D = document.getElementById('toggle-3d');
-        const toggleParallax = document.getElementById('toggle-parallax');
         const btnGuardarAjustes = document.getElementById('btn-guardar-ajustes');
         const btnRestablecerAjustes = document.getElementById('btn-restablecer-ajustes');
 
@@ -981,16 +1056,6 @@
             document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
         });
 
-        toggleTransparencia.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
-                inputTransparencia.disabled = false;
-            } else {
-                document.documentElement.style.setProperty('--opacidad-tarjeta', '1.0');
-                inputTransparencia.disabled = true;
-            }
-        });
-
         toggle3D.addEventListener('change', (e) => {
             if (e.target.checked) {
                 document.body.classList.add('efecto-3d-activo');
@@ -1008,7 +1073,7 @@
         }
 
         document.addEventListener('mousemove', (e) => {
-            if (!parallaxActivo || esMovil) return;
+            if (!parallaxActivo || esMovil || document.body.classList.contains('sin-animaciones')) return;
             const x = (window.innerWidth / 2 - e.clientX) / 45;
             const y = (window.innerHeight / 2 - e.clientY) / 45;
             bgCurrent.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
@@ -1038,6 +1103,7 @@
                 fondoIndice: selectFondoIndividual.value,
                 transparencia: inputTransparencia.value,
                 transparenciaActiva: toggleTransparencia.checked,
+                sinAnimaciones: toggleAnimaciones.checked,
                 efecto3D: toggle3D.checked,
                 parallax: toggleParallax.checked,
                 modoOscuro: document.body.classList.contains('dark-mode')
@@ -1059,7 +1125,11 @@
             document.documentElement.style.setProperty('--opacidad-tarjeta', '0.65');
             toggleTransparencia.checked = true;
             inputTransparencia.disabled = false;
+            grupoTransparencia.classList.remove('control-apagado');
             
+            toggleAnimaciones.checked = false;
+            document.body.classList.remove('sin-animaciones');
+
             toggle3D.checked = true;
             document.body.classList.add('efecto-3d-activo');
             
@@ -1099,7 +1169,14 @@
                 if (!config.transparenciaActiva) {
                     document.documentElement.style.setProperty('--opacidad-tarjeta', '1.0');
                     inputTransparencia.disabled = true;
+                    grupoTransparencia.classList.add('control-apagado');
                 }
+                
+                toggleAnimaciones.checked = config.sinAnimaciones;
+                if (config.sinAnimaciones) {
+                    document.body.classList.add('sin-animaciones');
+                }
+
                 toggle3D.checked = config.efecto3D;
                 if (!config.efecto3D) document.body.classList.remove('efecto-3d-activo');
 
