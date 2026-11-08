@@ -22,6 +22,8 @@
             --capa-oscura: rgba(0, 0, 0, 0);
             --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 100%, rgba(0,0,0,1) 100%);
             --duracion-anim: 0.4s;
+            --input-bg-select: rgba(255, 255, 255, 0.9);
+            --input-texto-select: #1d1d1f;
         }
 
         body.dark-mode {
@@ -36,16 +38,16 @@
             --color-acento: #ffffff;
             --acento-glow: rgba(255, 255, 255, 0.15);
             --capa-oscura: rgba(0, 0, 0, 0.45);
+            --input-bg-select: #1a1a20;
+            --input-texto-select: #ffffff;
         }
 
-        /* CUANDO LAS ANIMACIONES ESTÁN DESACTIVADAS */
         body.sin-animaciones *,
         body.sin-animaciones .bg-layer {
             transition: none !important;
             animation: none !important;
         }
 
-        /* CLASE PARA ATENUAR (APAGAR) CONTROLES BLOQUEADOS */
         .control-apagado {
             opacity: 0.35;
             filter: grayscale(80%);
@@ -271,15 +273,17 @@
         .control-group label { font-size: 0.88rem; font-weight: 600; display: flex; justify-content: space-between; }
         .slider-transparencia { width: 100%; accent-color: var(--color-acento); cursor: pointer; }
 
-        .select-pack-fondos {
+        select.select-pack-fondos, select.tool-input, input.tool-input {
             width: 100%; padding: 9px 12px; border-radius: 14px;
-            border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
-            color: var(--color-texto); font-weight: 600; font-size: 0.88rem; cursor: pointer;
+            border: 1px solid var(--tarjeta-borde); 
+            background-color: var(--input-bg-select) !important;
+            color: var(--input-texto-select) !important; 
+            font-weight: 600; font-size: 0.88rem; cursor: pointer;
             outline: none; transition: border-color 0.3s ease;
         }
-        .select-pack-fondos option {
-            background-color: #1a1a20;
-            color: #ffffff;
+        select option {
+            background-color: var(--input-bg-select);
+            color: var(--input-texto-select);
         }
 
         .temas-scroll-container {
@@ -345,7 +349,6 @@
             background-color: transparent; color: var(--color-texto);
         }
 
-        /* ANIMACIÓN DE REBOTE ÉPICA */
         @keyframes reboteEpico {
             0% { transform: scale(1); }
             30% { transform: scale(0.88); }
@@ -357,7 +360,6 @@
             animation: reboteEpico var(--duracion-anim) cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* BARRA SUPERIOR */
         header { 
             margin: 20px 4% 0; background-color: var(--header-bg); 
             backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
@@ -433,7 +435,6 @@
 
         .interactive-section { padding: 0 2% 20px; text-align: center; }
 
-        /* GRID PRINCIPAL DE TARJETAS */
         .main-content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -461,21 +462,41 @@
             margin-bottom: 18px; line-height: 1.4; transition: opacity 0.25s ease;
         }
 
-        .card-image-box {
-            width: 100%; height: 160px; border-radius: 16px; overflow: hidden;
-            margin-bottom: 15px; border: 1px solid var(--tarjeta-borde);
-        }
-        .card-image-box img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
-        }
-        .card-container:hover .card-image-box img { transform: scale(1.05); }
-
         .btn-action { 
             padding: 11px 22px; font-size: 0.92rem; font-weight: 600; 
             background: var(--color-boton); color: var(--color-boton-texto); 
             border: none; border-radius: 20px; cursor: pointer; 
             box-shadow: 0 4px 12px var(--acento-glow);
             transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+
+        .interactive-tool-box {
+            width: 100%; text-align: left; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px;
+        }
+        .tool-result {
+            font-size: 0.82rem; font-weight: 700; padding: 10px; border-radius: 10px;
+            background: rgba(0,0,0,0.06); border: 1px dashed var(--tarjeta-borde); text-align: center;
+        }
+
+        .progress-bar-container {
+            width: 100%; height: 8px; background: rgba(150, 150, 150, 0.2);
+            border-radius: 10px; overflow: hidden; margin-bottom: 12px;
+        }
+        .progress-bar-fill {
+            height: 100%; width: 16.6%; background-color: var(--color-acento);
+            transition: width 0.3s ease;
+        }
+
+        .img-test-container {
+            width: 100%; height: 130px; border-radius: 14px; overflow: hidden;
+            margin: 8px 0 12px 0; border: 1px solid var(--tarjeta-borde);
+        }
+        .img-test-container img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .test-nav-btns {
+            display: flex; gap: 10px; width: 100%; margin-top: 10px;
         }
 
         footer { 
@@ -485,7 +506,6 @@
             border-radius: 18px; box-shadow: var(--sombra-flotante); transition: all var(--duracion-anim) ease;
         }
 
-        /* MODALES FLOTANTES */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
@@ -505,7 +525,7 @@
 
         .modal-header {
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px; border-bottom: 1px solid var(--tarjeta-borde); padding-bottom: 10px;
+            margin-bottom: 12px; border-bottom: 1px solid var(--tarjeta-borde); padding-bottom: 10px;
         }
         .modal-header h2 { font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
 
@@ -534,12 +554,6 @@
             display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; text-align: left;
         }
         .form-group label { font-size: 0.85rem; font-weight: 600; }
-        .form-input, .form-textarea {
-            width: 100%; padding: 10px 12px; border-radius: 12px;
-            border: 1px solid var(--tarjeta-borde); background-color: var(--btn-inicio-bg);
-            color: var(--color-texto); font-size: 0.9rem; outline: none; resize: none;
-        }
-        .form-textarea { height: 90px; }
 
         .correo-info-box {
             font-size: 0.85rem; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 10px;
@@ -557,7 +571,6 @@
             font-size: 0.75rem; color: #ff3b30; font-weight: 600; display: none; margin-top: 2px;
         }
 
-        /* EFECTO PROFUNDIDAD 3D */
         body.efecto-3d-activo {
             --tarjeta-mask: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 100%);
         }
@@ -627,7 +640,6 @@
             </div>
         </div>
         
-        <!-- CONTROL TRANSPARENCIA -->
         <div class="control-group" id="grupo-transparencia">
             <label>Nivel de Transparencia <span id="val-transparencia">65%</span></label>
             <input type="range" id="input-transparencia" class="slider-transparencia" min="10" max="100" value="65">
@@ -671,7 +683,35 @@
         </div>
     </aside>
 
-    <!-- MODAL DE NOVEDADES (HISTORIAL NORMAL v1.0 A v1.3) -->
+    <!-- MODAL DEL TEST FINANCIERO -->
+    <div id="modal-test" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="titulo-modal-test">📊 Diagnóstico Financiero (1/6)</h2>
+                <button id="btn-cerrar-test" class="btn-cerrar-modal" title="Cerrar test">✕</button>
+            </div>
+            
+            <div class="progress-bar-container" id="bar-container">
+                <div class="progress-bar-fill" id="bar-fill"></div>
+            </div>
+
+            <div class="modal-body" id="cuerpo-test-modal">
+                <p id="pregunta-modal" style="font-weight: 700; font-size: 0.95rem;"></p>
+                
+                <div class="img-test-container" id="img-test-box">
+                    <img id="img-pregunta" src="" alt="Imagen ilustrativa">
+                </div>
+
+                <div id="opciones-modal" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                
+                <div class="test-nav-btns" id="test-nav-box">
+                    <button id="btn-prev-test" class="btn-action" style="background: transparent; border: 1px solid var(--tarjeta-borde); color: var(--color-texto); opacity: 0.5; pointer-events: none;">⬅️ Anterior</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE NOVEDADES (VERSIÓN 1.4) -->
     <div id="modal-novedades" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -679,21 +719,11 @@
                 <button id="btn-cerrar-novedades" class="btn-cerrar-modal">✕</button>
             </div>
             <div class="modal-body">
-                <span class="version-badge">📌 Versión 1.3</span>
-                <p>• Definición formal del objetivo institucional del proyecto enfocado en la conciencia económica.<br>
-                • Colección de Texturas elegantes y fondos futuristas.<br>
-                • Control independiente de animación, transparencia y efecto Parallax.<br>
-                • Optimización general del rendimiento y estabilidad de la interfaz.</p>
-
-                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.2</span>
-                <p>Implementación de tarjetas interactivas de consejos financieros y temas de color dinámicos.</p>
-
-                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.1</span>
-                <p>Soporte adaptable y optimización fluida para smartphones y celulares.</p>
-
-                <span class="version-badge" style="margin-top: 6px;">📌 Versión 1.0</span>
-                <p>Lanzamiento inicial para el proyecto EPT del colegio Paola Frassinetti Fe y Alegría 45.</p>
-
+                <span class="version-badge">📌 Versión 1.4 (Edición Definitiva)</span>
+                <p>• Corrección total de visibilidad en modo oscuro para recuadros de selección e inputs.<br>
+                • Test Financiero Pro ampliado a 6 preguntas estructuradas con imágenes temáticas corregidas.<br>
+                • Sistema de navegación fluida (Anterior/Siguiente) y barra de progreso interactiva.<br>
+                • Calculadora Hormiga rediseñada con entrada libre de montos decimales (ej. 1.20 o 6.70 soles) y selector de días (1 a 7).</p>
                 <p><strong>👥 Equipo Directivo:</strong></p>
                 <ul class="integrantes-list">
                     <li>👨‍💻 Luis Adrian Cueva Yana</li>
@@ -716,20 +746,17 @@
                     ✉️ Escríbenos directamente a:<br>
                     <span style="color: var(--color-acento);">papilucho308@gmail.com</span>
                 </div>
-
                 <form id="form-contacto">
                     <div class="form-group">
                         <label for="nombre-contacto">Tu Nombre</label>
-                        <input type="text" id="nombre-contacto" class="form-input" placeholder="Ej. Profesor / Compañero">
+                        <input type="text" id="nombre-contacto" class="tool-input" placeholder="Ej. Profesor / Compañero">
                         <span id="error-contacto-nombre" class="error-msg">⚠️ Ingrese su nombre.</span>
                     </div>
-
                     <div class="form-group">
                         <label for="mensaje-contacto">Mensaje</label>
-                        <textarea id="mensaje-contacto" class="form-textarea" placeholder="Escribe tu mensaje sobre finanzas o consultas..."></textarea>
+                        <textarea id="mensaje-contacto" class="tool-input" style="height: 80px;" placeholder="Escribe tu mensaje sobre finanzas..."></textarea>
                         <span id="error-contacto-mensaje" class="error-msg">⚠️ Escriba un mensaje.</span>
                     </div>
-
                     <button type="submit" class="btn-submit">Enviar Mensaje por Gmail 🚀</button>
                 </form>
             </div>
@@ -759,6 +786,7 @@
             </div>
         </section>
 
+        <!-- SECCIONES SEPARADAS E INDEPENDIENTES PARA CALCULADORA Y TEST -->
         <section class="interactive-section">
             <div class="main-content-grid">
                 <!-- Tarjeta 1: Consejos de Conciencia Económica -->
@@ -770,33 +798,43 @@
                     <button id="btn-frase" class="btn-action">Siguiente Consejo 🔄</button>
                 </div>
 
-                <!-- Tarjeta 2: Consumo Responsable -->
+                <!-- Tarjeta 2: Calculadora Hormiga Independiente -->
                 <div class="card-container">
-                    <h2>Consumo Responsable 📊</h2>
-                    <div class="card-image-box">
-                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Educación Financiera">
+                    <h2>Calculadora Hormiga 💸</h2>
+                    <div class="interactive-tool-box">
+                        <label style="font-size: 0.82rem; font-weight: 600;">Gasto diario en antojos (S/.):</label>
+                        <input type="number" id="input-hormiga" class="tool-input" placeholder="Ej. 1.20 o 6.70" min="0" step="0.10" value="5.00">
+                        <label style="font-size: 0.82rem; font-weight: 600; margin-top: 4px;">Días a la semana que gastas (1 a 7):</label>
+                        <select id="select-dias-hormiga" class="tool-input">
+                            <option value="1">1 día a la semana</option>
+                            <option value="2">2 días a la semana</option>
+                            <option value="3">3 días a la semana</option>
+                            <option value="4">4 días a la semana</option>
+                            <option value="5" selected>5 días (Colegio / Lunes a Viernes)</option>
+                            <option value="6">6 días a la semana</option>
+                            <option value="7">7 días (Toda la semana)</option>
+                        </select>
+                        <div class="tool-result" id="resultado-hormiga" style="margin-top: 6px;">
+                            Al año pierdes: S/. 1,300.00 📉
+                        </div>
                     </div>
-                    <p style="font-size: 0.88rem; opacity: 0.95; line-height: 1.4;">
-                        Reflexionar sobre nuestras decisiones de gasto evita consumos impulsivos y fortalece la economía de nuestro hogar.
-                    </p>
+                    <button id="btn-calcular-hormiga" class="btn-action">Calcular Impacto ⚡</button>
                 </div>
 
-                <!-- Tarjeta 3: Principios Financieros -->
+                <!-- Tarjeta 3: Test Financiero Pro Independiente -->
                 <div class="card-container">
-                    <h2>Educación & Futuro 📈</h2>
-                    <div class="card-image-box">
-                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80" alt="Planificación">
-                    </div>
-                    <p style="font-size: 0.88rem; opacity: 0.95; line-height: 1.4;">
-                        Aprender a diferenciar necesidades de deseos nos encamina hacia una estabilidad económica duradera.
+                    <h2>Test Financiero Pro 📊</h2>
+                    <p style="font-size: 0.88rem; opacity: 0.95; line-height: 1.4; margin-bottom: 15px;">
+                        Responde 6 preguntas estructuradas y descubre tu diagnóstico financiero preciso con consejos personalizados.
                     </p>
+                    <button id="btn-abrir-test" class="btn-action">Iniciar Test (6 preguntas) 🚀</button>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p id="footer-creditos">&copy; 2026 Mundo Alegría • Edición Naturaleza Dinámica</p>
+        <p id="footer-creditos">&copy; 2026 Mundo Alegría • Edición Naturaleza Dinámica (v1.4)</p>
     </footer>
 
     <script>
@@ -853,6 +891,203 @@
         const inputTransparencia = document.getElementById('input-transparencia');
         const toggleTransparencia = document.getElementById('toggle-transparencia');
 
+        const inputHormiga = document.getElementById('input-hormiga');
+        const selectDiasHormiga = document.getElementById('select-dias-hormiga');
+        const resultadoHormiga = document.getElementById('resultado-hormiga');
+        const btnCalcularHormiga = document.getElementById('btn-calcular-hormiga');
+
+        btnCalcularHormiga.addEventListener('click', () => {
+            const gastoDiario = parseFloat(inputHormiga.value) || 0;
+            const diasSemana = parseInt(selectDiasHormiga.value) || 5;
+            const semanasAnio = 52;
+            const totalAnual = gastoDiario * diasSemana * semanasAnio;
+            resultadoHormiga.textContent = `Al año pierdes: S/. ${totalAnual.toLocaleString('en-US', {minimumFractionDigits: 2})} 📉`;
+        });
+
+        // 6 PREGUNTAS CON LA IMAGEN 4 CORREGIDA (SEGUNDA OPCIÓN)
+        const testPreguntas = [
+            {
+                pregunta: "1. ¿Qué haces cuando ves una oferta tentadora de algo que no tenías planeado comprar?",
+                imagen: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=600&q=80",
+                opciones: [
+                    { texto: "Lo compro inmediatamente sin dudarlo", puntos: 1 },
+                    { texto: "Lo pienso unas horas y suelo terminar comprándolo", puntos: 2 },
+                    { texto: "Analizo si es una necesidad real o solo un capricho", puntos: 3 }
+                ]
+            },
+            {
+                pregunta: "2. ¿Llevas un registro o presupuesto claro de tus ingresos y gastos semanales?",
+                imagen: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80",
+                opciones: [
+                    { texto: "No registro nada, gasto según lo que tenga en mano", puntos: 1 },
+                    { texto: "Llevo una idea aproximada en la mente", puntos: 2 },
+                    { texto: "Anoto mis entradas y gastos fijos detalladamente", puntos: 3 }
+                ]
+            },
+            {
+                pregunta: "3. Cuando recibes dinero (propina, mesada o sueldo), ¿cuál es tu primera reacción?",
+                imagen: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80",
+                opciones: [
+                    { texto: "Pensar en qué antojos o juegos puedo gastármelo", puntos: 1 },
+                    { texto: "Gastar en salidas y guardar un poco si sobra", puntos: 2 },
+                    { texto: "Separar un porcentaje fijo para mi ahorro primero", puntos: 3 }
+                ]
+            },
+            {
+                pregunta: "4. ¿Cómo manejas los 'Gastos Hormiga' (snacks, bebidas o pequeños antojos diarios)?",
+                imagen: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+                opciones: [
+                    { texto: "Gasto diario en ellos sin calcular el monto acumulado", puntos: 1 },
+                    { texto: "Sé que me excedo a veces, pero no los controlo", puntos: 2 },
+                    { texto: "Los calculo y limito para cuidar mi presupuesto", puntos: 3 }
+                ]
+            },
+            {
+                pregunta: "5. Ante un imprevisto o emergencia, ¿tienes un fondo monetario guardado?",
+                imagen: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80",
+                opciones: [
+                    { texto: "No, tendría que pedir prestado o acudir a terceros", puntos: 1 },
+                    { texto: "Tengo muy poco ahorrado para salir del paso", puntos: 2 },
+                    { texto: "Sí, cuento con una reserva lista para imprevistos", puntos: 3 }
+                ]
+            },
+            {
+                pregunta: "6. ¿Te informas sobre finanzas personales, educación económica o presupuestos?",
+                imagen: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
+                opciones: [
+                    { texto: "Nunca, me parece un tema aburrido o complicado", puntos: 1 },
+                    { texto: "Rara vez leo o veo videos de consejos financieros", puntos: 2 },
+                    { texto: "Constantemente busco aprender a manejar mejor mi dinero", puntos: 3 }
+                ]
+            }
+        ];
+
+        let indicePregunta = 0;
+        let respuestasUsuario = new Array(testPreguntas.length).fill(null);
+
+        const modalTest = document.getElementById('modal-test');
+        const btnAbrirTest = document.getElementById('btn-abrir-test');
+        const btnCerrarTest = document.getElementById('btn-cerrar-test');
+        const tituloModalTest = document.getElementById('titulo-modal-test');
+        const preguntaModal = document.getElementById('pregunta-modal');
+        const imgPregunta = document.getElementById('img-pregunta');
+        const imgTestBox = document.getElementById('img-test-box');
+        const opcionesModal = document.getElementById('opciones-modal');
+        const barFill = document.getElementById('bar-fill');
+        const barContainer = document.getElementById('bar-container');
+        const btnPrevTest = document.getElementById('btn-prev-test');
+
+        btnAbrirTest.addEventListener('click', () => {
+            indicePregunta = 0;
+            respuestasUsuario.fill(null);
+            modalTest.classList.add('active');
+            barContainer.style.display = 'block';
+            cargarPreguntaTest();
+        });
+
+        btnCerrarTest.addEventListener('click', () => modalTest.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (e.target === modalTest) modalTest.classList.remove('active'); });
+
+        btnPrevTest.addEventListener('click', () => {
+            if (indicePregunta > 0) {
+                indicePregunta--;
+                cargarPreguntaTest();
+            }
+        });
+
+        function cargarPreguntaTest() {
+            const actual = testPreguntas[indicePregunta];
+            tituloModalTest.textContent = `📊 Diagnóstico Financiero (${indicePregunta + 1}/6)`;
+            
+            const porcentaje = ((indicePregunta + 1) / testPreguntas.length) * 100;
+            barFill.style.width = `${porcentaje}%`;
+
+            preguntaModal.textContent = actual.pregunta;
+            imgPregunta.src = actual.imagen;
+            imgTestBox.style.display = 'block';
+            opcionesModal.innerHTML = '';
+
+            if (indicePregunta > 0) {
+                btnPrevTest.style.opacity = '1';
+                btnPrevTest.style.pointerEvents = 'all';
+            } else {
+                btnPrevTest.style.opacity = '0.5';
+                btnPrevTest.style.pointerEvents = 'none';
+            }
+
+            actual.opciones.forEach((opcion) => {
+                const btnOp = document.createElement('button');
+                btnOp.className = 'btn-action';
+                btnOp.style.width = '100%';
+                btnOp.style.textAlign = 'left';
+                btnOp.style.padding = '10px 14px';
+                btnOp.style.fontSize = '0.85rem';
+                btnOp.textContent = opcion.texto;
+
+                if (respuestasUsuario[indicePregunta] === opcion.puntos) {
+                    btnOp.style.border = '2px solid var(--color-acento)';
+                }
+
+                btnOp.addEventListener('click', () => {
+                    respuestasUsuario[indicePregunta] = opcion.puntos;
+                    if (indicePregunta < testPreguntas.length - 1) {
+                        indicePregunta++;
+                        cargarPreguntaTest();
+                    } else {
+                        mostrarResultadoTestFinal();
+                    }
+                });
+                opcionesModal.appendChild(btnOp);
+            });
+        }
+
+        function mostrarResultadoTestFinal() {
+            const puntajeTotal = respuestasUsuario.reduce((acc, val) => acc + (val || 0), 0);
+            tituloModalTest.textContent = "🎯 ¡Diagnóstico Finalizado!";
+            barContainer.style.display = 'none';
+            imgTestBox.style.display = 'none';
+            btnPrevTest.style.opacity = '0.5';
+            btnPrevTest.style.pointerEvents = 'none';
+
+            let perfil = "";
+            let consejo = "";
+
+            if (puntajeTotal <= 8) {
+                perfil = "Gastador Impulsivo ⚠️";
+                consejo = "Tiendes a ceder ante compras impulsivas y pequeños gastos diarios. Te aconsejamos aplicar la 'Regla de las 24 horas': espera un día entero antes de adquirir algo que no sea de primera necesidad.";
+            } else if (puntajeTotal <= 13) {
+                perfil = "Moderado en Proceso ⚖️";
+                consejo = "Tienes noción del ahorro y evitas descalabros mayores, pero aún se te escapan gastos no previstos. Te recomendamos fijar un presupuesto fijo mensual y apartar tu ahorro primero.";
+            } else {
+                perfil = "Estratega de Oro 💡";
+                consejo = "¡Excelente disciplina! Controlas muy bien tus impulsos y planificas tu economía personal con madurez. Mantén ese hábito y sigue informándote sobre inversiones para potenciar tu dinero.";
+            }
+
+            preguntaModal.textContent = "Resultado de tu Análisis Financiero:";
+            opcionesModal.innerHTML = '';
+
+            const divResultado = document.createElement('div');
+            divResultado.className = 'tool-result';
+            divResultado.style.padding = '14px';
+            divResultado.style.textAlign = 'left';
+            divResultado.innerHTML = `<strong>Nivel Detectado:</strong> ${perfil}<br><br><strong>Recomendación Directiva:</strong> ${consejo}`;
+
+            const btnReiniciar = document.createElement('button');
+            btnReiniciar.className = 'btn-action';
+            btnReiniciar.style.width = '100%';
+            btnReiniciar.style.marginTop = '10px';
+            btnReiniciar.textContent = '🔄 Repetir Test';
+            btnReiniciar.addEventListener('click', () => {
+                indicePregunta = 0;
+                respuestasUsuario.fill(null);
+                barContainer.style.display = 'block';
+                cargarPreguntaTest();
+            });
+
+            opcionesModal.appendChild(divResultado);
+            opcionesModal.appendChild(btnReiniciar);
+        }
+
         let packActual = 'naturaleza';
         let fotosFondo = coleccionesFondos[packActual];
         let indiceActual = 0;
@@ -861,7 +1096,6 @@
         bgCurrent.style.backgroundImage = `url('${fotosFondo[0]}')`;
         fraseTexto.textContent = consejosEconomicos[0];
 
-        // APAGADO EXCLUSIVO DE LA BARRA DE TRANSPARENCIA
         toggleTransparencia.addEventListener('change', (e) => {
             if (e.target.checked) {
                 document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
@@ -874,11 +1108,9 @@
             }
         });
 
-        // DESACTIVAR ANIMACIONES DE BOTONES Y APAGAR PARALLAX AL MISMO TIEMPO
         toggleAnimaciones.addEventListener('change', (e) => {
             if (e.target.checked) {
                 document.body.classList.add('sin-animaciones');
-                // Al apagar animaciones también se desactiva el parallax automáticamente
                 toggleParallax.checked = false;
                 toggleParallax.dispatchEvent(new Event('change'));
             } else {
@@ -886,7 +1118,6 @@
             }
         });
 
-        // ANIMACIÓN DE REBOTE AL CLICKEAR
         document.querySelectorAll('.btn-action, .btn-nav-contacto, .btn-nav-novedades, .btn-sidebar-save, .btn-sidebar-reset, .btn-sidebar-oscuro').forEach(btn => {
             btn.addEventListener('click', function() {
                 if (document.body.classList.contains('sin-animaciones')) return;
@@ -914,7 +1145,6 @@
             fotosFondo = coleccionesFondos[packActual];
             indiceActual = 0;
             actualizarOpcionesIndividuales();
-
             aplicarFondo(fotosFondo[0]);
 
             const nombresPacks = {
@@ -923,7 +1153,7 @@
                 marmol: 'Texturas',
                 futurista: 'Futurista & Tecnología'
             };
-            footerCreditos.innerHTML = `&copy; 2026 Mundo Alegría • Edición ${nombresPacks[packActual]}`;
+            footerCreditos.innerHTML = `&copy; 2026 Mundo Alegría • Edición ${nombresPacks[packActual]} (v1.4)`;
         });
 
         selectFondoIndividual.addEventListener('change', (e) => {
@@ -947,12 +1177,10 @@
 
         btnFrase.addEventListener('click', () => {
             indiceActual = (indiceActual + 1) % consejosEconomicos.length;
-
             if (document.body.classList.contains('sin-animaciones')) {
                 fraseTexto.textContent = consejosEconomicos[indiceActual];
                 return;
             }
-
             fraseTexto.style.opacity = '0';
             setTimeout(() => {
                 fraseTexto.textContent = consejosEconomicos[indiceActual];
@@ -966,7 +1194,6 @@
             btnOscuro.innerHTML = esOscuro ? '☀️ Modo Claro' : '🌙 Modo Oscuro';
         });
 
-        // MODALES
         const modalNovedades = document.getElementById('modal-novedades');
         document.getElementById('btn-abrir-novedades').addEventListener('click', () => modalNovedades.classList.add('active'));
         document.getElementById('btn-cerrar-novedades').addEventListener('click', () => modalNovedades.classList.remove('active'));
@@ -980,7 +1207,6 @@
             if (e.target === modalContacto) modalContacto.classList.remove('active');
         });
 
-        // ENVÍO DE CORREO AUTOMÁTICO
         const formContacto = document.getElementById('form-contacto');
         const nombreContacto = document.getElementById('nombre-contacto');
         const mensajeContacto = document.getElementById('mensaje-contacto');
@@ -1013,15 +1239,12 @@
                 const nombre = encodeURIComponent(nombreContacto.value.trim());
                 const mensaje = encodeURIComponent(mensajeContacto.value.trim());
                 const asunto = encodeURIComponent("Consulta desde la web Mundo Alegría (EPT)");
-                
                 window.location.href = `mailto:papilucho308@gmail.com?subject=${asunto}&body=Hola, mi nombre es ${nombre}.%0D%0A%0D%0AMensaje:%0D%0A${mensaje}`;
-                
                 formContacto.reset();
                 modalContacto.classList.remove('active');
             }
         });
 
-        // SIDEBAR Y AJUSTES
         const logoBtn = document.getElementById('logo-btn');
         const sidebar = document.getElementById('sidebar');
         const btnCerrarSidebar = document.getElementById('btn-cerrar-sidebar');
@@ -1048,11 +1271,9 @@
             if (!toggleTransparencia.checked) return;
             const sliderVal = parseInt(e.target.value);
             valTransparencia.textContent = `${sliderVal}%`;
-            
             ultimoValorOpacidad = 1.05 - (sliderVal / 100);
             if (ultimoValorOpacidad < 0.15) ultimoValorOpacidad = 0.15;
             if (ultimoValorOpacidad > 0.95) ultimoValorOpacidad = 0.95;
-
             document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
         });
 
@@ -1115,10 +1336,8 @@
         btnRestablecerAjustes.addEventListener('click', () => {
             localStorage.removeItem('ajustesMundoAlegria');
             cambiarTema('');
-            
             selectPackFondos.value = 'naturaleza';
             selectPackFondos.dispatchEvent(new Event('change'));
-
             inputTransparencia.value = 65;
             valTransparencia.textContent = '65%';
             ultimoValorOpacidad = 0.65;
@@ -1126,19 +1345,14 @@
             toggleTransparencia.checked = true;
             inputTransparencia.disabled = false;
             grupoTransparencia.classList.remove('control-apagado');
-            
             toggleAnimaciones.checked = false;
             document.body.classList.remove('sin-animaciones');
-
             toggle3D.checked = true;
             document.body.classList.add('efecto-3d-activo');
-            
             toggleParallax.checked = !esMovil;
             parallaxActivo = !esMovil;
-
             document.body.classList.remove('dark-mode');
             btnOscuro.innerHTML = '🌙 Modo Oscuro';
-
             alert('¡Ajustes restablecidos al estado por defecto! 🔄');
         });
 
@@ -1158,11 +1372,9 @@
                 if (config.transparencia) {
                     inputTransparencia.value = config.transparencia;
                     valTransparencia.textContent = `${config.transparencia}%`;
-                    
                     ultimoValorOpacidad = 1.05 - (config.transparencia / 100);
                     if (ultimoValorOpacidad < 0.15) ultimoValorOpacidad = 0.15;
                     if (ultimoValorOpacidad > 0.95) ultimoValorOpacidad = 0.95;
-
                     document.documentElement.style.setProperty('--opacidad-tarjeta', ultimoValorOpacidad);
                 }
                 toggleTransparencia.checked = config.transparenciaActiva;
@@ -1171,21 +1383,17 @@
                     inputTransparencia.disabled = true;
                     grupoTransparencia.classList.add('control-apagado');
                 }
-                
                 toggleAnimaciones.checked = config.sinAnimaciones;
                 if (config.sinAnimaciones) {
                     document.body.classList.add('sin-animaciones');
                 }
-
                 toggle3D.checked = config.efecto3D;
                 if (!config.efecto3D) document.body.classList.remove('efecto-3d-activo');
-
                 toggleParallax.checked = config.parallax;
                 parallaxActivo = config.parallax;
-
                 if (config.modoOscuro) {
                     document.body.classList.add('dark-mode');
-                    btnOscuro.innerHTML = '☀️ Modo Claro';
+                    btnOscuro.innerHTML = '🌙 Modo Claro';
                 }
             }
         });
